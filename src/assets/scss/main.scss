@@ -1,8 +1,14 @@
-//@import './base.css';
+@use 'globals/dimensions';
+@use 'globals/flex';
+@use 'globals/grid';
+@use 'globals/margin';
+@use 'globals/padding';
+
 body{
   padding: 0;
   margin: 0;
   overflow: hidden;
+  font-family: 'Baloo 2', sans-serif;
 }
 #app {
   max-width: 1280px;

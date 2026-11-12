@@ -6,25 +6,42 @@ import Map from '@/components/icons/Map.vue';
 </script>
 
 <template>
-    <!-- Baggrunden: ligger fast bag alt andet -->
-    <Map class="background"/>
 
-    <!-- Alt indhold (header, modaler osv.) ligger ovenpå -->
-    <div class="content">
-        <CharacterDisplay v-if="1==1"/>
-        <RouterView />
+    <div class="fillScreen background">
+        <Map/>
     </div>
+    <div class="fillScreen asideSplit">
+        <CharacterDisplay v-if="1==1"/>
+        <RouterView/>
+    </div>
+
 </template>
 
 <style lang="scss" scoped>
-    .background{
-        position: fixed; // tages ud af det normale flow, så den ikke skubber indholdet ned
-        inset: 0;        // top/right/bottom/left: 0 -> fylder hele skærmen
-        z-index: 0;
+    .fillScreen{
         height: 100vh;
         width: 100vw;
+        position: absolute;
         overflow: hidden;
+    }
+
+    .background{
+        background: #3986B7;
+        display: flex;
+        box-sizing: border-box;
+        padding-right: 10%; //Moves the background left and right
+    }
+
+    .background svg{
         object-fit: contain;
+        width: auto;
+        height: 100%;
+        margin-left: auto;
+    }
+
+    .asideSplit{
+        display: grid;
+        grid-template-columns: 20% auto;
     }
 
     .content{
