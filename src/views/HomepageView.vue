@@ -1,9 +1,13 @@
 <script setup lang="ts">
 
+import MapLayout from '@/layouts/MapLayout.vue';
+
 </script>
 
 <template>
-    <p>Hej</p>
+
+    <MapLayout/>
+
 </template>
 
 <style scoped lang="scss">
