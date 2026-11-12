@@ -1,7 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-$font-main: 'Work Sans', sans-serif;
-$font-weight-regular: 400;
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+.baloo-2-uniquifier {
+font-family: "Baloo 2", sans-serif;
+font-optical-sizing: auto;
+font-weight: weight;
+font-style: normal;
+}
+
+
+.nunito-uniquifier {
+font-family: "Nunito", sans-serif;
+font-optical-sizing: auto;
+font-weight: weight;
+font-style: normal;
+}
 
 .font {
     &--light { font-weight: 300; }
