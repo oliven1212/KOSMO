@@ -1,8 +1,7 @@
 <script setup lang="ts">
-
+import HeaderElement from '@/components/HeaderElement.vue';
 </script>
 
 <template>
-  <main>
-  </main>
+ <HeaderElement> Hej </HeaderElement>
 </template>
