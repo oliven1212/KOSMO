@@ -1,4 +1,9 @@
-//@import './base.css';
+@use 'globals/dimensions';
+@use 'globals/flex';
+@use 'globals/grid';
+@use 'globals/margin';
+@use 'globals/padding';
+
 body{
   padding: 0;
   margin: 0;
