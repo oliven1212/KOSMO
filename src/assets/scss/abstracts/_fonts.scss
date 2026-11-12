@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+$font-main: 'Work Sans', sans-serif;
+$font-weight-regular: 400;
+
+.font {
+    &--light { font-weight: 300; }
+    &--medium { font-weight: 500; }
+    &--bold { font-weight: 600 }
+
+    &--underline { text-decoration: underline; }
+
+
+    &--center { text-align: center; }
+    &--h1 { font-size: 30px; }
+    &--h2 { font-size: 24px; }
+    &--h3 { font-size: 20px; }
+    &--p { font-size: 16px; }
+
+    @media( min-width: 768px ) {
+        &--h1 { font-size: 44px; }
+        &--h2 { font-size: 32px; }
+        &--h3 { font-size: 24px; }
+        &--p { font-size: 20px; }
+    }
+
+    @media( min-width: 1024px ) {
+        &--h1 { font-size: 48px; }
+        &--h2 { font-size: 36px; }
+        &--h3 { font-size: 28px; }
+        &--p { font-size: 24px; }
+    }
+}

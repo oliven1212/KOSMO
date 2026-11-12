@@ -1,0 +1,116 @@
+.grid {
+  display: grid;
+
+  /* Columns */
+  &--cols-1 { grid-template-columns: repeat(1, 1fr); }
+  &--cols-2 { grid-template-columns: repeat(2, 1fr); }
+  &--cols-3 { grid-template-columns: repeat(3, 1fr); }
+  &--cols-4 { grid-template-columns: repeat(4, 1fr); }
+  &--cols-5 { grid-template-columns: repeat(5, 1fr); }
+  &--cols-6 { grid-template-columns: repeat(6, 1fr); }
+  &--cols-7 { grid-template-columns: repeat(7, 1fr); }
+  &--cols-8 { grid-template-columns: repeat(8, 1fr); }
+  &--cols-9 { grid-template-columns: repeat(9, 1fr); }
+  &--cols-10 { grid-template-columns: repeat(10, 1fr); }
+  &--cols-11 { grid-template-columns: repeat(11, 1fr); }
+  &--cols-12 { grid-template-columns: repeat(12, 1fr); }
+
+  /* Rows */
+  &--rows-1 { grid-template-rows: repeat(1, 1fr); }
+  &--rows-2 { grid-template-rows: repeat(2, 1fr); }
+  &--rows-3 { grid-template-rows: repeat(3, 1fr); }
+  &--rows-4 { grid-template-rows: repeat(4, 1fr); }
+  &--rows-5 { grid-template-rows: repeat(5, 1fr); }
+  &--rows-6 { grid-template-rows: repeat(6, 1fr); }
+
+  /* Auto flow */
+  &--flow-row { grid-auto-flow: row; }
+  &--flow-col { grid-auto-flow: column; }
+  &--flow-row-dense { grid-auto-flow: row dense; }
+  &--flow-col-dense { grid-auto-flow: column dense; }
+
+  /* Justify items */
+  &--just-items-start { justify-items: start; }
+  &--just-items-center { justify-items: center; }
+  &--just-items-end { justify-items: end; }
+  &--just-items-stretch { justify-items: stretch; }
+
+  /* Align items */
+  &--align-items-start { align-items: start; }
+  &--align-items-center { align-items: center; }
+  &--align-items-end { align-items: end; }
+  &--align-items-stretch { align-items: stretch; }
+
+  /* Justify content */
+  &--just-start { justify-content: start; }
+  &--just-center { justify-content: center; }
+  &--just-end { justify-content: end; }
+  &--just-between { justify-content: space-between; }
+  &--just-around { justify-content: space-around; }
+  &--just-evenly { justify-content: space-evenly; }
+  &--just-stretch { justify-content: stretch; }
+
+  /* Align content */
+  &--content-start { align-content: start; }
+  &--content-center { align-content: center; }
+  &--content-end { align-content: end; }
+  &--content-between { align-content: space-between; }
+  &--content-around { align-content: space-around; }
+  &--content-evenly { align-content: space-evenly; }
+  &--content-stretch { align-content: stretch; }
+
+  /* Gap */
+  &--gap-1 { gap: 0.25rem; }
+  &--gap-2 { gap: 0.5rem; }
+  &--gap-3 { gap: 1rem; }
+  &--gap-4 { gap: 1.5rem; }
+  &--gap-5 { gap: 3rem; }
+
+  /* Row gap */
+  &--gaprow-1 { row-gap: 0.25rem; }
+  &--gaprow-2 { row-gap: 0.5rem; }
+  &--gaprow-3 { row-gap: 1rem; }
+  &--gaprow-4 { row-gap: 1.5rem; }
+  &--gaprow-5 { row-gap: 3rem; }
+
+  /* Column gap */
+  &--gapcol-1 { column-gap: 0.25rem; }
+  &--gapcol-2 { column-gap: 0.5rem; }
+  &--gapcol-3 { column-gap: 1rem; }
+  &--gapcol-4 { column-gap: 1.5rem; }
+  &--gapcol-5 { column-gap: 3rem; }
+
+  /* Child align self */
+  &--align-start { align-self: start; }
+  &--align-center { align-self: center; }
+  &--align-end { align-self: end; }
+  &--align-stretch { align-self: stretch; }
+
+  /* Child justify self */
+  &--just-start { justify-self: start; }
+  &--just-center { justify-self: center; }
+  &--just-end { justify-self: end; }
+  &--just-stretch { justify-self: stretch; }
+
+  /* Column span */
+  &--col-span-1 { grid-column: span 1 / span 1; }
+  &--col-span-2 { grid-column: span 2 / span 2; }
+  &--col-span-3 { grid-column: span 3 / span 3; }
+  &--col-span-4 { grid-column: span 4 / span 4; }
+  &--col-span-5 { grid-column: span 5 / span 5; }
+  &--col-span-6 { grid-column: span 6 / span 6; }
+  &--col-span-7 { grid-column: span 7 / span 7; }
+  &--col-span-8 { grid-column: span 8 / span 8; }
+  &--col-span-9 { grid-column: span 9 / span 9; }
+  &--col-span-10 { grid-column: span 10 / span 10; }
+  &--col-span-11 { grid-column: span 11 / span 11; }
+  &--col-span-12 { grid-column: span 12 / span 12; }
+
+  /* Row span */
+  &--row-span-1 { grid-row: span 1 / span 1; }
+  &--row-span-2 { grid-row: span 2 / span 2; }
+  &--row-span-3 { grid-row: span 3 / span 3; }
+  &--row-span-4 { grid-row: span 4 / span 4; }
+  &--row-span-5 { grid-row: span 5 / span 5; }
+  &--row-span-6 { grid-row: span 6 / span 6; }
+}
