@@ -10,6 +10,11 @@
 </template>
 
 <style scoped>
+    svg{
+        aspect-ratio: 1/1;
+        height: 100%;
+        width: auto;
+    }
     path{
         stroke:#003B44;
         stroke-linejoin:round;
