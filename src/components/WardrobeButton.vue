@@ -3,10 +3,12 @@
 </script>
 
 <template>
-    <div style="width: 100%; height: 40px; background-color: aquamarine;">
-    </div>
+    <button class="button button--round">
+    </button>
 </template>
 <style lang="scss" scoped>
 @use '@/assets/scss/abstracts/colors' as c;
-
+button{
+    background-color: aquamarine;
+}
 </style>

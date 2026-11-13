@@ -3,21 +3,27 @@ import XPBar from '@/components/XPBar.vue';
 import MoneyDisplay from '@/components/MoneyDisplay.vue';
 import CharacterDisplay from '@/components/CharacterDisplay.vue';
 import WardrobeButton from '@/components/WardrobeButton.vue';
+import Achievements from '@/components/icons/Achievements.vue';
 
 </script>
 
 <template>
-    <div class="profileContainer">
+    <div class="w--fit h--fit min-h--50 p--2 m--auto ms--3 flex flex--column flex--gap--2 profileContainer">
         <XPBar/>
-        <div class="character">
+        <div class="flex flex--column flex--gap-3 character">
             <div class="flex flex--just-between">
                 <div></div>
                 <MoneyDisplay/>
             </div>
-            <CharacterDisplay/>
-            <div class="flex">
+            <div>
+                <h1 class="w--100 m--0">Kosmo</h1>
+                <CharacterDisplay class="p--4"/>
+            </div>
+            <div class="w--100 grid grid--cols-2 grid--gap-5 px--5">
                 <WardrobeButton/>
-                <button></button>
+                <button class="button button--round p--3">
+                    <Achievements/>
+                </button>
             </div>
         </div>
     </div>
@@ -25,20 +31,13 @@ import WardrobeButton from '@/components/WardrobeButton.vue';
 <style lang="scss" scoped>
 @use '@/assets/scss/abstracts/colors' as c;
     .profileContainer{
-        width: fit-content;
-        min-width: 100px;
-        height: fit-content;
-        min-height: 50%;
-        box-sizing: content-box;
-        padding: 0.5rem;
-        margin: auto;
-        margin-left: 1rem;
-
-        background-color: rgba(255, 255, 0, 0.123);
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .character{
-        display: flex;
-        flex-direction: column;
+        h1{
+            text-align: center;
+        }
     }
 </style>
