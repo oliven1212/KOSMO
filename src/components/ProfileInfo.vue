@@ -17,9 +17,9 @@ import Achievements from '@/components/icons/Achievements.vue';
             </div>
             <div class="flex flex--column w--100">
                 <h1 class="w--100 m--0">Kosmo</h1>
-                <CharacterDisplay/>
+                <CharacterDisplay />
             </div>
-            <div class="w--100 grid grid--cols-2 grid--gap-2 px--2">
+            <div class="w--100 grid grid--cols-2 grid--gap-3 px--3">
                 <WardrobeButton/>
                 <button class="button button--round p--3">
                     <Achievements/>
