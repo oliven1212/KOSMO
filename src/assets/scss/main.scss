@@ -16,3 +16,24 @@ body{
   padding: 0;
   font-weight: normal;
 }
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    
+  &:hover{
+    cursor: pointer;
+  }
+
+  &--round{
+    aspect-ratio: 1/1;
+    border-radius: 999px;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+
+  }
+}
