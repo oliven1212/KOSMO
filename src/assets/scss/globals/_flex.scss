@@ -1,5 +1,6 @@
 .flex {
   display: flex;
+  box-sizing: border-box;
 
   /* Flex directions */
   &--row { flex-direction: row; }
