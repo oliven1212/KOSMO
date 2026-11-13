@@ -17,7 +17,7 @@ export interface Region {
 
 // All playable regions (the bounds are rough starting values, adjust them by eye)
 export const regions: Region[] = [
-    // Europe, with Russia left out because it is mostly in Asia
+    // Europe
     { id: 'europe', label: 'Europe', bounds: [[34, -25], [72, 45]], continent: 'Europe', exclude: [] },
     // Asia
     { id: 'asia', label: 'Asia', bounds: [[-11, 26], [60, 146]], continent: 'Asia', exclude: [] },
