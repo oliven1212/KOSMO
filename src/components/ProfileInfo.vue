@@ -8,18 +8,18 @@ import Achievements from '@/components/icons/Achievements.vue';
 </script>
 
 <template>
-    <div class="w--fit h--fit min-h--50 p--2 m--auto ms--3 flex flex--column flex--gap--2 profileContainer">
+    <div class="w--fit h--fit min-h--50 p--2 m--auto ms--3 flex flex--column flex--gap-2 profileContainer">
         <XPBar/>
-        <div class="flex flex--column flex--gap-3 character">
+        <div class="flex flex--column flex--gap-3 p--3 modal character">
             <div class="flex flex--just-between">
                 <div></div>
                 <MoneyDisplay/>
             </div>
-            <div>
+            <div class="flex flex--column w--100">
                 <h1 class="w--100 m--0">Kosmo</h1>
-                <CharacterDisplay class="p--4"/>
+                <CharacterDisplay/>
             </div>
-            <div class="w--100 grid grid--cols-2 grid--gap-5 px--5">
+            <div class="w--100 grid grid--cols-2 grid--gap-2 px--2">
                 <WardrobeButton/>
                 <button class="button button--round p--3">
                     <Achievements/>

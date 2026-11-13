@@ -12,8 +12,8 @@
 <style scoped>
     svg{
         aspect-ratio: 1/1;
-        height: 100%;
-        width: auto;
+        height: auto;
+        width: 100%;
     }
     path{
         stroke:#003B44;
