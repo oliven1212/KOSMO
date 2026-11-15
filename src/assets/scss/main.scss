@@ -3,6 +3,7 @@
 @use 'globals/grid';
 @use 'globals/margin';
 @use 'globals/padding';
+@use 'abstracts/colors' as c;
 
 body{
   padding: 0;
