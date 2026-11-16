@@ -31,15 +31,24 @@ body{
     cursor: pointer;
   }
 
+  &--danger{
+    background-color: c.$dangerButton;
+  }
+
   &--round{
     aspect-ratio: 1/1;
     border-radius: 999px;
     box-sizing: border-box;
     overflow: hidden;
     height: 100%;
-    min-width: 100%;
-    min-height: 100%;
+  }
 
+  &--primary{
+    background-color: c.$primary;
+  }
+
+  &--tts{
+    background-color: c.$readaloudButton;
   }
 }
 
