@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
 import ProfileInfo from '@/components/ProfileInfo.vue';
 import Map from '@/components/icons/Map.vue';
 
@@ -11,7 +10,7 @@ import Map from '@/components/icons/Map.vue';
     </div>
     <div class="w-vw--100 h-vh--100 grid fillScreen asideSplit">
         <ProfileInfo v-if="1==1"/>
-        <RouterView/>
+        <slot/>
     </div>
 
 </template>
