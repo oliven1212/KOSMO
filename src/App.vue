@@ -17,10 +17,12 @@ function checkAnswer(): void {
         modal checker
     </button>
   <TaskConfirmModal
+  
     v-if="pendingCountry"
     :text="`Er du sikker på, at du vil vælge ${pendingCountry}?`"
     @confirm="checkAnswer"
     @close="pendingCountry = null"
+    
 />
   <MapLayout/>
 </template>

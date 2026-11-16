@@ -7,7 +7,6 @@
 @use 'globals/grid';
 @use 'globals/margin';
 @use 'globals/padding';
-@use 'abstracts/colors' as c;
 
 body{
   padding: 0;
@@ -38,9 +37,11 @@ body{
     box-sizing: border-box;
     overflow: hidden;
     height: 100%;
-    min-width: 100%;
-    min-height: 100%;
 
+  }
+
+  &--tts{
+    background-color: c.$readaloudButton;
   }
 }
 
@@ -51,4 +52,8 @@ body{
   border-style: solid;
   box-sizing: border-box;
   border-radius: 24px;
+}
+
+.modal::backdrop{
+  background: c.$overlay;
 }
