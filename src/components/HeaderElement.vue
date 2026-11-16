@@ -33,7 +33,7 @@
 
     &__title {
         margin: 0;
-        font-family: $font-main;
+        font-family: 'Baloo 2', sans-serif;
         font-weight: 700;
         font-size: 22px;
         color: $secondary;
