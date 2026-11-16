@@ -1,3 +1,5 @@
+@use '@/assets/scss/abstracts/colors' as c;
+
 @use 'globals/dimensions';
 @use 'globals/flex';
 @use 'globals/grid';
@@ -16,4 +18,34 @@ body{
   margin: 0;
   padding: 0;
   font-weight: normal;
+}
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    
+  &:hover{
+    cursor: pointer;
+  }
+
+  &--round{
+    aspect-ratio: 1/1;
+    border-radius: 999px;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+
+  }
+}
+
+.modal{
+  background-color: c.$modalBackground;
+  border-color: c.$modalStroke;
+  border-width: 3px;
+  border-style: solid;
+  box-sizing: border-box;
+  border-radius: 24px;
 }

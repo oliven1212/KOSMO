@@ -1,5 +1,6 @@
 .grid {
   display: grid;
+  box-sizing: border-box;
 
   /* Columns */
   &--cols-1 { grid-template-columns: repeat(1, 1fr); }
