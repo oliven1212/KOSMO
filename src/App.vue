@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import MapLayout from '@/layouts/MapLayout.vue';
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <MapLayout/>
+  <RouterView/>
 </template>
 
 <style scoped>

@@ -14,7 +14,7 @@ const equippedComponents = computed(() => {
 
 <template>
     <div>
-        <svg class="px--2 py--3 w--100 kosmoContainer" viewBox="0 0 244 320" fill="#95DEAE" xmlns="http://www.w3.org/2000/svg">
+        <svg class="px--2 py--3 w--100 kosmoContainer" viewBox="0 0 244 320" xmlns="http://www.w3.org/2000/svg">
             <Kosmo />
             <component v-for="(item, i) in equippedComponents" :key="equipped[i]" :is="item"/>
         </svg>
