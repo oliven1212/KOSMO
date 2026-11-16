@@ -51,8 +51,8 @@ body{
   box-sizing: border-box;
   border-radius: 24px;
 
-  &-screen--dark{
-    background-color: rgba(0, 0, 0, 0.3);
+  &-overlay--dark{
+    background-color: c.$overlay;
     position: absolute;
     left: 0;
     right: 0;
