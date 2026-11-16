@@ -1,18 +1,39 @@
+<!--
+    TaskConfirmationModal
+
+    Asks "are you sure?" before the game accepts an answer. Knows nothing about the game itself.
+
+    Usage in the parent example:
+        const pendingCountry = ref<string | null>(null);
+
+        <TaskConfirmModal
+            v-if="pendingCountry"
+            :text="`Er du sikker på, at du vil vælge ${pendingCountry}?`"
+            @confirm="checkAnswer"
+            @close="pendingCountry = null"
+        />
+
+    Rules:
+        - Always mount it with v-if, because it opens itself in onMounted.
+        - @close must clear the parent's state, or the modal never disappears.
+        - confirm is emitted before close, so the parent still has its data in @confirm.
+-->
+
 <script setup lang="ts">
 // Bring in the Vue tools we use: ref (holds a value), and two lifecycle hooks
 import { onMounted, onUnmounted, ref } from 'vue';
 
 // Declare the data the PARENT must give us, here one string called text
 const props = defineProps<{
-    // The sentence that is shown AND read aloud
+    /** The sentence that is shown on screen AND read aloud */
     text: string;
 }>();
 
 // Declare the events we can send UP to the parent
 const emit = defineEmits<{
-    // "The user confirmed", no extra data attached
+    /** The user pressed "Bekræft" */
     confirm: [];
-    // "Please remove me", no extra data attached
+    /** The modal wants to be removed, emitted after confirm and after "Prøv noget andet" */
     close: [];
 }>();
 
