@@ -34,10 +34,10 @@ import Map from '@/components/icons/Map.vue';
 
     .asideSplit{
         grid-template-columns: 20% auto;
-    }
+        pointer-events: none;      // tomme områder lader klik gå igennem til kortet
 
-    .content{
-        position: relative; // z-index virker kun på elementer med position
-        z-index: 1;         // højere end baggrunden -> ligger ovenpå
+        > * {
+            pointer-events: auto;  // men ProfileInfo, header osv. kan stadig klikkes
+        }
     }
 </style>

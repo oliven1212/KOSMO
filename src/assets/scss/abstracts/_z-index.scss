@@ -1,0 +1,9 @@
+
+$z-map:     0;   // baggrundskortet
+$z-task:    5;   // task-knapper på kortet
+$z-header:  10;  // HeaderElement
+$z-modal:   20;  // modaler (Garderobe osv.)
+
+// Alt imellem er Kosmo-ting, som skal være over modalerne, men under overlayet
+
+$z-overlay: 50;  // mørk overlay / popups øverst

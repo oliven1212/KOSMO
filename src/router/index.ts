@@ -7,7 +7,17 @@ const router = createRouter({
             path: '/',
             name: 'homepage',
             component: () => import('@/views/HomepageView.vue'),
-        }
+        },
+        {
+            path: '/graense-minigame',
+            name: 'graense-minigame',
+            component: () => import('@/views/HomepageView.vue'),
+        },
+        {
+            path: '/is',
+            name: 'is',
+            component: () => import('@/views/HomepageView.vue'),
+        },
     ],
 });
 
