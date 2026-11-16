@@ -1,5 +1,4 @@
 <script setup lang="ts">
-<<<<<<< HEAD
 import { ref } from 'vue';
 import MapLayout from '@/layouts/MapLayout.vue';
 import TaskConfirmModal from '@/components/modals/TaskConfirmationModal.vue';
@@ -24,13 +23,6 @@ function checkAnswer(): void {
     @close="pendingCountry = null"
 />
   <MapLayout/>
-=======
-import { RouterView } from 'vue-router';
-</script>
-
-<template>
-  <RouterView/>
->>>>>>> dev
 </template>
 
 <style scoped>
