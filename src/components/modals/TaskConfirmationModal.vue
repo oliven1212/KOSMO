@@ -75,12 +75,12 @@ function onConfirm(): void {
             <TtsButton :text="text" />
             <div class="flex flex--gapcol-4">
                 <!-- Clicking calls onClose from the script -->
-                <button type="button" class="button button--round" @click="onClose">
+                <button type="button" class="button button--round button--danger" @click="onClose">
                     Prøv noget andet
                 </button>
 
                 <!-- Clicking calls onConfirm from the script -->
-                <button type="button" class="button button--round" @click="onConfirm">
+                <button type="button" class="button button--round button--primary" @click="onConfirm">
                     Bekræft
                 </button>
             </div>
