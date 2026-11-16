@@ -14,17 +14,17 @@
 @use '@/assets/scss/abstracts/fonts' as *;
 
 .header {
-    // Mål fra Figma: W 1275, H 93, radius 24
-    width: 100%;
-    max-width: 1275px;  // aldrig bredere end designet, men kan blive smallere på små skærme
-    height: 93px;
-    box-sizing: border-box; // padding og border tælles med i de 93px
 
-    position: relative; // z-index virker kun med position
+    width: 100%;
+    max-width: 1275px;
+    height: 93px;
+    box-sizing: border-box;
+
+    position: relative;
     z-index: 10;
 
     display: flex;
-    align-items: center; // centrerer teksten lodret i de 93px
+    align-items: center; 
     padding: 0 24px;
 
     background-color: $modalBackground;
