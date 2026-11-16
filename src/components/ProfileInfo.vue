@@ -17,7 +17,7 @@ import Achievements from '@/components/icons/Achievements.vue';
             </div>
             <div class="flex flex--column w--100">
                 <h1 class="w--100 m--0">Kosmo</h1>
-                <CharacterDisplay />
+                <CharacterDisplay class="kosmoContainer px--2 py--3 w--100"/>
             </div>
             <div class="w--100 grid grid--cols-2 grid--gap-3 px--3">
                 <WardrobeButton/>
@@ -39,5 +39,12 @@ import Achievements from '@/components/icons/Achievements.vue';
         h1{
             text-align: center;
         }
+    }
+
+    .kosmoContainer{
+        background-color: c.$kosmoBackground;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 24px;
     }
 </style>
