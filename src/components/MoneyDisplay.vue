@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import Coins from '@/components/icons/Coins.vue';
+
+defineProps<{
+    amount: number
+}>();
 
 </script>
 
 <template>
-    <div style="width: 80px; height: 30px; background-color: deeppink;">
-
+    <div class="flex ">
+        <Coins /> <p>{{ amount }}</p>
     </div>
 </template>
 <style lang="scss" scoped>

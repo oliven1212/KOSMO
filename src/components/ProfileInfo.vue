@@ -13,7 +13,7 @@ import AchievementButton from '@/components/AchievementButton.vue';
         <div class="flex flex--column flex--gap-3 p--3 modal character">
             <div class="flex flex--just-between">
                 <div></div>
-                <MoneyDisplay/>
+                <MoneyDisplay :amount="100"/>
             </div>
             <div class="flex flex--column w--100">
                 <h1 class="w--100 m--0">Kosmo</h1>
