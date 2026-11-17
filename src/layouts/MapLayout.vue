@@ -37,5 +37,11 @@ const loginStore = useLoginStore();
 
     .asideSplit{
         grid-template-columns: 20% auto;
+        align-content: center;     // rækken får ProfileInfos højde, så modalen kan matche den
+        pointer-events: none;      // tomme områder lader klik gå igennem til kortet
+
+        > * {
+            pointer-events: auto;  // men ProfileInfo, header osv. kan stadig klikkes
+        }
     }
 </style>

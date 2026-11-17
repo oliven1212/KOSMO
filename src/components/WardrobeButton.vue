@@ -1,14 +1,22 @@
 <script setup lang="ts">
-
+import WardrobeIcon from '@/components/icons/WardrobeIcon.vue';
 </script>
 
 <template>
-    <button class="button button--round">
-    </button>
+    <!-- Et link og ikke en <button>, fordi et tryk skifter rute -->
+    <RouterLink to="/garderobe" aria-label="Garderobe" class="wardrobeButton">
+        <WardrobeIcon />
+    </RouterLink>
 </template>
+
 <style lang="scss" scoped>
-@use '@/assets/scss/abstracts/colors' as c;
-button{
-    background-color: aquamarine;
+.wardrobeButton {
+    display: block;
+
+    // Den lilla cirkel er en del af SVG'en, så den skal bare skalere til pladsen
+    svg {
+        width: 100%;
+        height: auto;
+    }
 }
 </style>
