@@ -8,10 +8,9 @@ const route = useRoute();
 
 <template>
     <MapLayout>
-        <!-- Vises kun, når man er på /garderobe -->
+
         <MenuModal v-if="route.name === 'garderobe'" title="Garderobe">
-            <!-- faner og ListContainer kommer her -->
-            <RouterLink to="/">Fortryd</RouterLink>
+            <RouterLink :to="{ name: 'homepage' }">Fortryd</RouterLink>
         </MenuModal>
     </MapLayout>
 </template>
