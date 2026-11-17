@@ -9,7 +9,7 @@ const route = useRoute();
 <template>
     <MapLayout>
 
-        <MenuModal v-if="route.name === 'garderobe'" title="Garderobe">
+        <MenuModal v-if="route.name === 'wardrobe'" title="Garderobe">
             <RouterLink :to="{ name: 'homepage' }">Fortryd</RouterLink>
         </MenuModal>
 
