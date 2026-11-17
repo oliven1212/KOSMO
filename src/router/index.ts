@@ -18,6 +18,11 @@ const router = createRouter({
             name: 'is',
             component: () => import('@/views/HomepageView.vue'),
         },
+        {
+            path: '/garderobe',
+            name: 'garderobe',
+            component: () => import('@/views/HomepageView.vue'),
+        },
     ],
 });
 

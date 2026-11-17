@@ -34,6 +34,7 @@ import Map from '@/components/icons/Map.vue';
 
     .asideSplit{
         grid-template-columns: 20% auto;
+        align-content: center;     // rækken får ProfileInfos højde, så modalen kan matche den
         pointer-events: none;      // tomme områder lader klik gå igennem til kortet
 
         > * {
