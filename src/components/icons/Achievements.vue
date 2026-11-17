@@ -1,24 +1,43 @@
 <template>
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8.3335 12.2167V13.5717C8.3271 14.1523 8.01896 14.6877 7.52016 14.985C6.46437 15.767 5.83926 17.0012 5.8335 18.315"/>
-    <path d="M11.6665 12.2167V13.5717C11.6729 14.1523 11.981 14.6877 12.4798 14.985C13.5356 15.767 14.1607 17.0012 14.1665 18.315"/>
-    <path d="M15 7.49998H16.25C17.3998 7.49998 18.3333 6.56647 18.3333 5.41665C18.3333 4.26682 17.3998 3.33331 16.25 3.33331H15"/>
-    <path d="M3.3335 18.3333H16.6668"/>
-    <path d="M5 7.50002C5 10.2596 7.24042 12.5 10 12.5C12.7596 12.5 15 10.2596 15 7.50002V2.50002C15 2.03978 14.6269 1.66669 14.1667 1.66669H5.83333C5.3731 1.66669 5 2.03978 5 2.50002V7.50002" />
-    <path d="M4.99984 7.49998H3.74984C2.60001 7.49998 1.6665 6.56647 1.6665 5.41665C1.6665 4.26682 2.60001 3.33331 3.74984 3.33331H4.99984" />
-</svg>
+    <svg width="91" height="89" viewBox="0 0 91 89" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_d_459_40030)">
+            <rect x="3" y="3" width="85" height="79" rx="39.5" fill="#C1E7E4" shape-rendering="crispEdges" />
+            <rect x="1.5" y="1.5" width="88" height="82" rx="41" stroke="white" stroke-width="3"
+                shape-rendering="crispEdges" />
+            <path d="M32.8962 26.3418H25.1401C25.1401 35.3906 27.984 40.1304 33.6718 40.5613" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+            <path d="M58.75 26.3418H66.5061C66.5061 35.3906 63.6622 40.1304 57.9744 40.5613" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+            <path
+                d="M32.8962 19.8779H58.7499V34.0974C58.7499 44.4389 54.441 49.6096 45.8231 49.6096C37.2052 49.6096 32.8962 44.4389 32.8962 34.0974V19.8779Z"
+                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+            <path d="M45.8232 49.6094V59.9508" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+                stroke="white" />
+            <path
+                d="M36.7744 69V63.8292C36.7744 61.2439 38.0671 59.9512 40.6525 59.9512H50.9939C53.5793 59.9512 54.872 61.2439 54.872 63.8292V69H36.7744Z"
+                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+            <path d="M31.6038 69H60.0428" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+                stroke="white" />
+            <path
+                d="M45.8233 27.6338L47.7623 31.7704L52.2867 32.2874L48.9257 35.3899L49.8306 39.785L45.8233 37.5874L41.816 39.785L42.7208 35.3899L39.3599 32.2874L43.8843 31.7704L45.8233 27.6338Z"
+                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+            <path d="M70.3842 16V18.5854M70.3842 18.5854V21.1707M70.3842 18.5854H67.7988M70.3842 18.5854H72.9696"
+                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+            <path d="M19.9695 54.7803V56.7193M19.9695 56.7193V58.6583M19.9695 56.7193H18.0305M19.9695 56.7193H21.9086"
+                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="white" />
+        </g>
+        <defs>
+            <filter id="filter0_d_459_40030" x="0" y="0" width="91" height="89" filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha" />
+                <feOffset dy="4" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0.564706 0 0 0 0 0.615686 0 0 0 0 0.635294 0 0 0 1 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_459_40030" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_459_40030" result="shape" />
+            </filter>
+        </defs>
+    </svg>
 </template>
-
-<style scoped>
-    svg{
-        aspect-ratio: 1/1;
-        height: auto;
-        width: 100%;
-    }
-    path{
-        stroke:#003B44;
-        stroke-linejoin:round;
-        stroke-linecap:round;
-        stroke-width:1.66667;
-    }
-</style>
