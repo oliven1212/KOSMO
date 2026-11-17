@@ -2,10 +2,12 @@
 import MapLayout from '@/layouts/MapLayout.vue';
 import ContainerModal from '@/components/modals/ContainerModal.vue';
 import CharacterDisplay from '@/components/CharacterDisplay.vue';
-import UniLogin from '@/components/icons/uniLogin.vue';
+import UniLogin from '@/components/icons/UniLogin.vue';
 import { useLoginStore } from '@/stores/login';
 
 const loginStore = useLoginStore();
+
+loginStore.signOut();
 
 </script>
 
@@ -33,10 +35,11 @@ const loginStore = useLoginStore();
 
 .loginModal{
     grid-template-columns: auto 45ch;
+    align-items: center;
 }
 
 .loginKosmo{
-    height: 100%;
+    height: 38vh;
     width: auto;
 }
 
