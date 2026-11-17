@@ -4,7 +4,7 @@ import WardrobeIcon from '@/components/icons/WardrobeIcon.vue';
 
 <template>
     <!-- Et link og ikke en <button>, fordi et tryk skifter rute -->
-    <RouterLink to="/garderobe" aria-label="Garderobe" class="wardrobeButton">
+    <RouterLink :to="{ name: 'wardrobe' }" aria-label="Garderobe" class="wardrobeButton">
         <WardrobeIcon />
     </RouterLink>
 </template>
@@ -13,8 +13,8 @@ import WardrobeIcon from '@/components/icons/WardrobeIcon.vue';
 .wardrobeButton {
     display: block;
 
-    // Den lilla cirkel er en del af SVG'en, så den skal bare skalere til pladsen
     svg {
+        display: block; // fjerner den ekstra luft under SVG'en (inline-elementer får plads til tekst)
         width: 100%;
         height: auto;
     }

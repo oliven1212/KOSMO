@@ -24,8 +24,8 @@ const router = createRouter({
             component: () => import('@/views/HomepageView.vue'),
         },
         {
-            path: '/garderobe',
-            name: 'garderobe',
+            path: '/wardrobe',
+            name: 'wardrobe',
             component: () => import('@/views/HomepageView.vue'),
         },
         {

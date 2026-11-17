@@ -1,4 +1,5 @@
 // components
+export { default as AchievementButton } from './AchievementButton.vue';
 export { default as CharacterDisplay } from './CharacterDisplay.vue';
 export { default as HeaderElement } from './HeaderElement.vue';
 export { default as MoneyDisplay } from './MoneyDisplay.vue';
