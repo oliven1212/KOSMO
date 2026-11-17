@@ -13,6 +13,8 @@ body{
   margin: 0;
   overflow: hidden;
   font-family: 'Baloo 2', sans-serif;
+  text-wrap: balance;
+  text-wrap: pretty;
 }
 #app {
   max-width: 1280px;
@@ -26,6 +28,11 @@ body{
     align-items: center;
     justify-content: center;
     border: none;
+    
+    svg{
+      height: 100%;
+      width: auto;
+    }
     
   &:hover{
     cursor: pointer;
@@ -50,6 +57,13 @@ body{
   &--tts{
     background-color: c.$readaloudButton;
   }
+    &--rounded{
+    border-radius: 24px;
+    box-sizing: content-box;
+    overflow: hidden;
+
+
+  }
 }
 
 .modal{
@@ -60,8 +74,8 @@ body{
   box-sizing: border-box;
   border-radius: 24px;
 
-  &-screen--dark{
-    background-color: rgba(0, 0, 0, 0.3);
+  &-overlay--dark{
+    background-color: c.$overlay;
     position: absolute;
     left: 0;
     right: 0;

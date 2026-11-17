@@ -12,12 +12,13 @@
 <style lang="scss" scoped>
 @use '@/assets/scss/abstracts/colors' as *;
 @use '@/assets/scss/abstracts/fonts' as *;
+@use '@/assets/scss/abstracts/sizes' as *;
 
 .header {
 
     width: 100%;
     max-width: 1275px;
-    height: 93px;
+    height: $topBarHeight; // samme højde som XP-baren
     box-sizing: border-box;
 
     position: relative;

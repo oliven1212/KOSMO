@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import ProfileInfo from '@/components/ProfileInfo.vue';
 import Map from '@/components/icons/Map.vue';
+import { useLoginStore } from '@/stores/login';
+
+const loginStore = useLoginStore();
 
 </script>
 
@@ -8,8 +11,8 @@ import Map from '@/components/icons/Map.vue';
     <div class="w-vw--100 h-vh--100 flex fillScreen background">
         <Map class="w--auto h--100 ms--auto" />
     </div>
-    <div class="w-vw--100 h-vh--100 grid fillScreen asideSplit">
-        <ProfileInfo v-if="1==1"/>
+    <div class="w-vw--100 h-vh--100 grid fillScreen asideSplit">    
+        <ProfileInfo v-if="loginStore.loggedIn == true"/>
         <slot/>
     </div>
 
@@ -34,6 +37,7 @@ import Map from '@/components/icons/Map.vue';
 
     .asideSplit{
         grid-template-columns: 20% auto;
+        align-content: center;     // rækken får ProfileInfos højde, så modalen kan matche den
         pointer-events: none;      // tomme områder lader klik gå igennem til kortet
 
         > * {
