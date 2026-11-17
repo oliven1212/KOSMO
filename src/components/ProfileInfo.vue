@@ -21,7 +21,7 @@ import Achievements from '@/components/icons/Achievements.vue';
             </div>
             <div class="w--100 grid grid--cols-2 grid--gap-3 px--3">
                 <WardrobeButton/>
-                <button class="button button--round p--1 achivementButton">
+                <button class="button button--round p--3">
                     <Achievements/>
                 </button>
             </div>
@@ -46,12 +46,5 @@ import Achievements from '@/components/icons/Achievements.vue';
         box-sizing: border-box;
         border: none;
         border-radius: 24px;
-    }
-    .achivementButton{
-        background-color: c.$achievementButton;
-        border-style: solid;
-        border-width: 3px;
-        border-color: c.$white;
-        filter: drop-shadow(0px 4px 0px color-mix(in oklab, c.$achievementButton, black 15%));
     }
 </style>
