@@ -4,19 +4,22 @@ import WardrobeIcon from '@/components/icons/WardrobeIcon.vue';
 
 <template>
     <!-- Et link og ikke en <button>, fordi et tryk skifter rute -->
-    <RouterLink :to="{ name: 'wardrobe' }" aria-label="Garderobe" class="wardrobeButton">
+    <RouterLink 
+        :to="{ name: 'wardrobe' }" 
+        aria-label="Garderobe" 
+        class="
+        button 
+        button--round 
+        button--drop-shadow
+        wardrobeButton">
         <WardrobeIcon />
     </RouterLink>
 </template>
 
 <style lang="scss" scoped>
-.wardrobeButton {
-    display: block;
+@use '@/assets/scss/abstracts/colors' as c;
 
-    svg {
-        display: block; // fjerner den ekstra luft under SVG'en (inline-elementer får plads til tekst)
-        width: 100%;
-        height: auto;
-    }
+.wardrobeButton {
+    background-color: c.$wardrobeButton;
 }
 </style>

@@ -19,9 +19,9 @@ import AchievementButton from '@/components/AchievementButton.vue';
                 <h1 class="w--100 m--0">Kosmo</h1>
                 <CharacterDisplay class="kosmoContainer px--2 py--3 w--100"/>
             </div>
-            <div class="w--100 grid grid--cols-2 grid--gap-3 px--3">
-                <WardrobeButton/>
-                <AchievementButton class="button button--round p--1 achivementButton" />
+            <div class="w--100 grid grid--cols-2 grid--gap-3 px--2">
+                <WardrobeButton />
+                <AchievementButton />
             </div>
         </div>
     </div>
@@ -44,14 +44,5 @@ import AchievementButton from '@/components/AchievementButton.vue';
         box-sizing: border-box;
         border: none;
         border-radius: 24px;
-    }
-    .achivementButton{
-        width: 100%;    // fylder sin kolonne, ligesom garderobe-knappen
-        height: auto;   // overskriver height: 100% fra .button--round, så højden følger bredden (aspect-ratio 1/1)
-        background-color: c.$achievementButton;
-        border-style: solid;
-        border-width: 3px;
-        border-color: c.$white;
-        filter: drop-shadow(0px 4px 0px color-mix(in oklab, c.$achievementButton, black 15%));
     }
 </style>

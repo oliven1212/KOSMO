@@ -1,18 +1,23 @@
 <script setup lang="ts">
-
 import { Achievements } from '@/components/icons';
-
 </script>
 
 <template>
-    <RouterLink :to=" { name: 'achievement' } " aria-label="achievement" class="achievementButton">
+    <RouterLink 
+        :to=" { name: 'achievement' } " 
+        aria-label="achievement" 
+        class="button 
+        button--round 
+        button--drop-shadow 
+        achievementButton">
         <Achievements />
     </RouterLink>
 </template>
 
 <style lang="scss" scoped>
-.achievementButton svg {
-    width: 100%;
-    height: auto;
+@use '@/assets/scss/abstracts/colors' as c;
+
+.achievementButton {
+    background-color: c.$achievementButton;
 }
 </style>
