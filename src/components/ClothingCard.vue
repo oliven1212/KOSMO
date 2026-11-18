@@ -40,7 +40,7 @@ defineEmits<{ select: [] }>();
     }
 
     &__image {
-        width: 50%;
+        width: 45%;
         height: auto;
         align-self: center;
         }

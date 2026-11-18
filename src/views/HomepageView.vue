@@ -18,11 +18,10 @@ const route = useRoute();
                 <ClothingCard name="Lyserød kjole" :price="100" clothing="PinkOutfit" />
                 <ClothingCard name="Rumdragt" :price="100" clothing="SpaceOutfit" selected />
             </ListContainer>
-            <RouterLink :to="{ name: 'homepage' }">Fortryd</RouterLink>
+
         </MenuModal>
 
         <MenuModal v-if="route.name === 'achievement'" title="Præstationer">
-            <RouterLink :to="{ name: 'homepage' }">Fortryd</RouterLink>
         </MenuModal>
     </MapLayout>
 </template>
