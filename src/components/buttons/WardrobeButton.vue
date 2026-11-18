@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import WardrobeIcon from '@/components/icons/WardrobeIcon.vue';
+import { WardrobeIcon } from '@/components/icons';
+
 </script>
 
 <template>
