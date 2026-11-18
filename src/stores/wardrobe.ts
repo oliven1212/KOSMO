@@ -34,7 +34,7 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
 
     const owned = ref<string[]>(['YellowOutfit']); // Start med en gratis outfit
     const equipped = ref<Outfit>({ clothes: 'YellowOutfit' }); // Hvilket tøj der er på Kosmo lige nu
-    const tryingOn = ref<Outfit>({ ...wearing.value }); // Hvilket tøj der er på Kosmo i prøverummet
+    const tryingOn = ref<Outfit>({ ...equipped.value }); // Hvilket tøj der er på Kosmo i prøverummet
 
     function getItem(id: string): WardrobeItem | undefined {
         return catalog.find(item => item.id === id);
@@ -85,8 +85,33 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
     }
 
     function save(): void {
-        if (!canSave.value) return;
+        if (!canSave.value) {
+            return;
+        }
+
         equipped.value = { ...tryingOn.value };
     }
+
+    function cancel(): void {
+        tryingOn.value = { ...equipped.value };
+    }
+
+    return {
+        catalog,
+        owned,
+        equipped,
+        tryingOn,
+        tryingOnList,
+        unOwnedTryingOn,
+        unOwnedPrice,
+        canSave,
+        getItem,
+        itemsIn,
+        isOwned,
+        tryOn,
+        buyTryingOn,
+        save,
+        cancel,
+    };
 
 });
