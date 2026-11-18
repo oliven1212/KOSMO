@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import Graense from '@/components/icons/Graense.vue';
 import Icecream from '@/components/icons/Icecream.vue';
-import TaskButton from '@/components/TaskButton.vue';
+import TaskButton from '@/components/buttons/TaskButton.vue';
 </script>
 
 <template>
