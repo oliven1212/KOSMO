@@ -28,7 +28,9 @@ body{
     align-items: center;
     justify-content: center;
     border: none;
-    
+    &:has(svg){
+      padding: 16px;
+    }
     svg{
       height: 100%;
       width: auto;
