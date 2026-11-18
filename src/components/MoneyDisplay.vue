@@ -5,14 +5,18 @@ defineProps<{
     amount: number
 }>();
 
+
 </script>
 
 <template>
-    <div class="flex ">
+    <div class="flex flex--align-center flex--gap-1">
         <Coins /> <p>{{ amount }}</p>
     </div>
 </template>
 <style lang="scss" scoped>
 @use '@/assets/scss/abstracts/colors' as c;
+    svg{
+        height: 1.2rem;
+    }
 
 </style>
