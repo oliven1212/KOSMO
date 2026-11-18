@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-
-import Kosmo from '@/components/icons/Kosmo.vue';
+import { Kosmo } from '@/components/icons';
 import { loadClothing } from '@/utils/clothing';
 
 // Names of equipped clothing, matching file names in components/icons/clothing/

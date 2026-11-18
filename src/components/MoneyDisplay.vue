@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Coins from '@/components/icons/Coins.vue';
+import { Coins } from '@/components/icons';
 
 defineProps<{
     amount: number

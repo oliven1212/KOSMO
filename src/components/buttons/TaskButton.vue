@@ -1,6 +1,5 @@
 <script setup lang="ts">
-
-import TaskIcon from '../icons/TaskIcon.vue';
+import { TaskIcon } from '@/components/icons';
 
 defineProps<{
     to: string;     // ruten, f.eks. '/graense-minigame'

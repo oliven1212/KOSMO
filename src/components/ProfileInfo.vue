@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import XPBar from '@/components/XPBar.vue';
-import MoneyDisplay from '@/components/MoneyDisplay.vue';
-import CharacterDisplay from '@/components/CharacterDisplay.vue';
-import WardrobeButton from '@/components/buttons/WardrobeButton.vue';
-import AchievementButton from '@/components/buttons/AchievementButton.vue';
+import { AchievementButton, WardrobeButton } from '@/components/buttons';
+import { CharacterDisplay, MoneyDisplay, XPBar } from '@/components';
 
 import { useWalletStore } from '@/stores/wallet';
 
