@@ -63,7 +63,7 @@ function onClose(): void {
 <template>
     <!-- ref="dialogRef" connects this element to the dialogRef variable above -->
     <!-- @cancel.prevent stops the Esc key from closing it -->
-    <dialog ref="dialogRef" class="modal taskDescriptionModal h--auto" @cancel.prevent>
+    <dialog ref="dialogRef" class="modal taskDescriptionModal" @cancel.prevent>
         <!-- The title from the content prop -->
         <p class="taskDescriptionModal__title">
             {{ content.title }}

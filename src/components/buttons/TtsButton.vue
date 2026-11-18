@@ -34,19 +34,14 @@ onUnmounted((): void => {
 </script>
 
 <template>
-    <button type="button" class="button button--round button--drop-shadow ttsButton" aria-label="Læs op" @click="onSpeak">
+    <!-- Same classes as StartButton, only the background differs: button--tts gives the read-aloud colour -->
+    <button type="button" class="button button--round button--tts button--drop-shadow ttsButton" aria-label="Læs op" @click="onSpeak">
+        <!-- aria-hidden hides the picture from screen readers, the label above does the talking -->
         <Speaker aria-hidden="true" />
     </button>
 </template>
 
 <style scoped lang="scss">
-/* padding: the global .button:has(svg) adds 16px, but this icon draws its own circle, so it needs none */
-/* background: the global .button doesn't reset the browser's grey default */
-.ttsButton {
-    padding: 0;
-    background: none;
-}
-
 /* Visible outline when using the keyboard */
 .ttsButton:focus-visible {
     outline: 3px solid #1a3040;
