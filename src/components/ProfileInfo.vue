@@ -46,12 +46,6 @@ import AchievementButton from '@/components/buttons/AchievementButton.vue';
         border-radius: 24px;
     }
     .achivementButton{
-        width: 100%;    // fylder sin kolonne, ligesom garderobe-knappen
-        height: auto;   // overskriver height: 100% fra .button--round, så højden følger bredden (aspect-ratio 1/1)
         background-color: c.$achievementButton;
-        border-style: solid;
-        border-width: 3px;
-        border-color: c.$white;
-        filter: drop-shadow(0px 4px 0px color-mix(in oklab, c.$achievementButton, black 15%));
     }
 </style>
