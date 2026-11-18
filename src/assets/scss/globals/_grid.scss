@@ -60,6 +60,8 @@
   &--content-evenly { align-content: space-evenly; }
   &--content-stretch { align-content: stretch; }
 
+  //Center content
+  &--center { align-content: center; justify-content: center; }
   // Gap 
   &--gap-1 { gap: 0.25rem; }
   &--gap-2 { gap: 0.5rem; }
