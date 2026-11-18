@@ -8,7 +8,7 @@ const clothingCache = new Map<string, Component>();
 export function loadClothing(name: string): Component {
     if (!clothingCache.has(name)) {
         clothingCache.set(name, defineAsyncComponent(() => {
-            return import(`@/components/icons/clothing/${name}.vue`);
+            return import(`@/components/clothing/${name}.vue`);
         }));
     }
 
