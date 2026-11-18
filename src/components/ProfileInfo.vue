@@ -5,6 +5,10 @@ import CharacterDisplay from '@/components/CharacterDisplay.vue';
 import WardrobeButton from '@/components/buttons/WardrobeButton.vue';
 import AchievementButton from '@/components/buttons/AchievementButton.vue';
 
+import { useWalletStore } from '@/stores/wallet';
+
+const walletStore = useWalletStore();
+
 </script>
 
 <template>
@@ -13,7 +17,7 @@ import AchievementButton from '@/components/buttons/AchievementButton.vue';
         <div class="flex flex--column flex--gap-3 p--3 modal character">
             <div class="flex flex--just-between">
                 <div></div>
-                <MoneyDisplay :amount="100"/>
+                <MoneyDisplay :amount="walletStore.wallet"/>
             </div>
             <div class="flex flex--column w--100">
                 <h1 class="w--100 m--0">Kosmo</h1>
