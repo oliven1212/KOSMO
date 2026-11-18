@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
     <div class="flex flex--align-center flex--gap-1">
-        <Coins /> <p>{{ amount }}</p>
+        <Coins /> <p class="m--0">{{ amount }}</p>
     </div>
 </template>
 <style lang="scss" scoped>

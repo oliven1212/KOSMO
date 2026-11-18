@@ -14,10 +14,12 @@ const walletStore = useWalletStore();
 <template>
     <div class="w--fit h--fit min-h--50 p--2 m--auto ms--3 flex flex--column flex--gap-2 profileContainer">
         <XPBar/>
-        <div class="flex flex--column flex--gap-3 p--3 modal character">
+        <div class="flex flex--column flex--gap-3 modal character">
             <div class="flex flex--just-between">
                 <div></div>
-                <MoneyDisplay :amount="walletStore.wallet"/>
+                <div class="px--2 py--1 moneyBackground">
+                    <MoneyDisplay :amount="walletStore.wallet"/>
+                </div>
             </div>
             <div class="flex flex--column w--100">
                 <h1 class="w--100 m--0">Kosmo</h1>
@@ -38,8 +40,11 @@ const walletStore = useWalletStore();
     }
 
     .character{
+        padding: 0.75rem;
         h1{
             text-align: center;
+            line-height: 100%;
+            color: c.$secondary;
         }
     }
 
@@ -51,5 +56,12 @@ const walletStore = useWalletStore();
     }
     .achivementButton{
         background-color: c.$achievementButton;
+    }
+    .moneyBackground{
+        background-color: c.$kosmoBackground;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        color: c.$secondary;
     }
 </style>
