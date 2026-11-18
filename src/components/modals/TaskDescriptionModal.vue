@@ -24,7 +24,7 @@
 <script setup lang="ts">
 // Bring in the Vue tools we use: computed (derived value), onMounted (runs on appear) and ref (holds the dialog)
 import { computed, onMounted, ref } from 'vue';
-import { TtsButton, Start } from '@/components/icons';
+import { TtsButton, StartButton } from '@/components/buttons';
 import type { TaskDescription } from '@/content/tasksTexts';
 
 // Required prop: the parent must pass a complete TaskDescription
@@ -76,13 +76,11 @@ function onClose(): void {
             </li>
         </ul>
 
-        <div class="flex flex--just-between h--66">
+        <div class="flex flex--just-between h--25">
             <!-- spokenText is the title and items joined into one string -->
             <TtsButton :text="spokenText" />
-            <!-- Clicking calls onClose from the script -->
-            <button type="button" class="button">
-                <Start @click="onClose"></Start>
-            </button>
+            <!-- @click falls through to the <button> inside StartButton -->
+            <StartButton @click="onClose" />
         </div>
     </dialog>
 </template>

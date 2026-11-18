@@ -38,11 +38,3 @@ export const waterAmountGameDescription: TaskDescription = {
         'Når du er tilfreds skal du bekræfte og gå videre til næste opgave.',
     ],
 };
-
-// Opslagstabel: nøglen er det, der står i URL'en, værdien er teksten til det spil
-export const descriptionByTask: Partial<Record<string, TaskDescription>> = {
-    // Nøglerne skal passe med det, din route bruger (tilpas dem)
-    countryGame: countryGameDescription,
-    waterPhasesGame: waterPhasesGameDescription,
-    waterAmountGame: waterAmountGameDescription,
-};
