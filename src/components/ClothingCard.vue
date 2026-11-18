@@ -39,7 +39,11 @@ defineEmits<{ select: [] }>();
         border-color: c.$modalSelected;
     }
 
-    &__image { width: 100%; height: auto; }
+    &__image {
+        width: 50%;
+        height: auto;
+        align-self: center;
+        }
     &__footer { align-items: center; }
     &__name {
         font-family: 'Baloo 2', sans-serif;
