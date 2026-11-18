@@ -12,7 +12,7 @@ export const countryGameDescription: TaskDescription = {
         'Se øverst på siden efter hvilket land du skal finde.',
         'Klik på landet når du mener du ved hvor det er.',
         'Landet vil skifte farve og så kan du trykke “Bekræft svar”.',
-        'Du vil få af vide om det rigtigt eller forkert.',
+        'Du vil få af vide om det er rigtigt eller forkert.',
         'Tryk derefter videre til næste opgave.',
     ],
 };
@@ -37,4 +37,12 @@ export const waterAmountGameDescription: TaskDescription = {
         'Der er hints på skærmen for at hjælpe dig.',
         'Når du er tilfreds skal du bekræfte og gå videre til næste opgave.',
     ],
+};
+
+// Opslagstabel: nøglen er det, der står i URL'en, værdien er teksten til det spil
+export const descriptionByTask: Partial<Record<string, TaskDescription>> = {
+    // Nøglerne skal passe med det, din route bruger (tilpas dem)
+    countryGame: countryGameDescription,
+    waterPhasesGame: waterPhasesGameDescription,
+    waterAmountGame: waterAmountGameDescription,
 };

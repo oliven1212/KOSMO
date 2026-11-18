@@ -1,45 +1,51 @@
 <!--
     TaskDescriptionModal
 
-    Asks "are you sure?" before the game accepts an answer. Knows nothing about the game itself.
+    Shows the instructions for a task: a title and a list of steps, with a button that reads them aloud.
+    Knows nothing about which game it is used in. The parent decides which text to show.
 
     Usage in the parent example:
-        const pendingCountry = ref<string | null>(null);
+        import { countryGameDescription } from '@/content/tasksTexts';
 
-        <TaskConfirmModal
-            v-if="pendingCountry"
-            :text="`Er du sikker på, at du vil vælge ${pendingCountry}?`"
-            @confirm="checkAnswer"
-            @close="pendingCountry = null"
+        const showDescription = ref(true);
+
+        <TaskDescriptionModal
+            v-if="showDescription"
+            :content="countryGameDescription"
+            @close="showDescription = false"
         />
 
     Rules:
         - Always mount it with v-if, because it opens itself in onMounted.
+        - content must be a complete TaskDescription (title and items), never an empty object.
         - @close must clear the parent's state, or the modal never disappears.
-        - confirm is emitted before close, so the parent still has its data in @confirm.
 -->
 
 <script setup lang="ts">
-// Bring in the Vue tools we use: ref (holds a value), and two lifecycle hooks
-import { onMounted, ref } from 'vue';
-import TtsButton from '@/components/icons/Speaker.vue';
+// Bring in the Vue tools we use: computed (derived value), onMounted (runs on appear) and ref (holds the dialog)
+import { computed, onMounted, ref } from 'vue';
+import { TtsButton, Start } from '@/components/icons';
+import type { TaskDescription } from '@/content/tasksTexts';
 
-// Declare the data the PARENT must give us, here one string called text
-defineProps<{
-    /** The sentence that is shown on screen AND read aloud */
-    text: string;
+// Required prop: the parent must pass a complete TaskDescription
+const props = defineProps<{
+    /** The title and list items that are shown and read aloud */
+    content: TaskDescription;
 }>();
 
-// Declare the events we can send UP to the parent
+// Declare the event we send UP to the parent
 const emit = defineEmits<{
-    /** The user pressed "Bekræft" */
-    confirm: [];
-    /** The modal wants to be removed, emitted after confirm and after "Prøv noget andet" */
+    /** The user pressed "Videre", the parent should remove the modal */
     close: [];
 }>();
 
 // Will hold the <dialog> element itself, null until it exists on the page
 const dialogRef = ref<HTMLDialogElement | null>(null);
+
+// Title first, then the items, as one string for the read-aloud button
+const spokenText = computed((): string => {
+    return [props.content.title, ...props.content.items].join('. ');
+});
 
 // Runs once, right after the component has appeared on the page
 onMounted((): void => {
@@ -47,17 +53,9 @@ onMounted((): void => {
     dialogRef.value?.showModal();
 });
 
-// Runs when "Prøv noget andet" is clicked
+// Runs when "Videre" is clicked
 function onClose(): void {
     // Tell the parent: please remove me
-    emit('close');
-}
-
-// Runs when "Bekræft" is clicked
-function onConfirm(): void {
-    // First tell the parent: the user confirmed
-    emit('confirm');
-    // Then tell the parent: please remove me
     emit('close');
 }
 </script>
@@ -65,32 +63,32 @@ function onConfirm(): void {
 <template>
     <!-- ref="dialogRef" connects this element to the dialogRef variable above -->
     <!-- @cancel.prevent stops the Esc key from closing it -->
-    <dialog ref="dialogRef" class="modal taskConfirmModal h-vh--25" @cancel.prevent>
-        <!-- Show the text prop on screen -->
-        <p class="taskConfirmModal__text">
-            {{ text }}
+    <dialog ref="dialogRef" class="modal taskDescriptionModal h--auto" @cancel.prevent>
+        <!-- The title from the content prop -->
+        <p class="taskDescriptionModal__title">
+            {{ content.title }}
         </p>
 
+        <!-- One <li> per item; the item text itself is the key (fine as long as no two items are identical) -->
+        <ul>
+            <li v-for="item in content.items" :key="item">
+                {{ item }}
+            </li>
+        </ul>
+
         <div class="flex flex--just-between h--66">
-            <TtsButton :text="text" />
-            <div class="flex flex--gapcol-4">
-                <!-- Clicking calls onClose from the script -->
-                <button type="button" class="button button--round button--danger" @click="onClose">
-                    Prøv noget andet
-                </button>
-
-                <!-- Clicking calls onConfirm from the script -->
-                <button type="button" class="button button--round button--primary" @click="onConfirm">
-                    Bekræft
-                </button>
-            </div>
+            <!-- spokenText is the title and items joined into one string -->
+            <TtsButton :text="spokenText" />
+            <!-- Clicking calls onClose from the script -->
+            <button type="button" class="button">
+                <Start @click="onClose"></Start>
+            </button>
         </div>
-
     </dialog>
 </template>
 
 <style scoped lang="scss">
-.taskConfirmModal {
+.taskDescriptionModal {
     width: 672px;
 }
 </style>
