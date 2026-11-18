@@ -2,18 +2,24 @@
 import XPBar from '@/components/XPBar.vue';
 import MoneyDisplay from '@/components/MoneyDisplay.vue';
 import CharacterDisplay from '@/components/CharacterDisplay.vue';
-import WardrobeButton from '@/components/WardrobeButton.vue';
-import Achievements from '@/components/icons/Achievements.vue';
+import WardrobeButton from '@/components/buttons/WardrobeButton.vue';
+import AchievementButton from '@/components/buttons/AchievementButton.vue';
+
+import { useWalletStore } from '@/stores/wallet';
+
+const walletStore = useWalletStore();
 
 </script>
 
 <template>
     <div class="w--fit h--fit min-h--50 p--2 m--auto ms--3 flex flex--column flex--gap-2 profileContainer">
         <XPBar/>
-        <div class="flex flex--column flex--gap-3 p--3 modal character">
+        <div class="flex flex--column flex--gap-3 modal character">
             <div class="flex flex--just-between">
                 <div></div>
-                <MoneyDisplay/>
+                <div class="px--2 py--1 moneyBackground">
+                    <MoneyDisplay :amount="walletStore.wallet"/>
+                </div>
             </div>
             <div class="flex flex--column w--100">
                 <h1 class="w--100 m--0">Kosmo</h1>
@@ -21,9 +27,7 @@ import Achievements from '@/components/icons/Achievements.vue';
             </div>
             <div class="w--100 grid grid--cols-2 grid--gap-3 px--3">
                 <WardrobeButton/>
-                <button class="button button--round p--3">
-                    <Achievements/>
-                </button>
+                <AchievementButton class="button button--round p--1 achivementButton" />
             </div>
         </div>
     </div>
@@ -36,8 +40,11 @@ import Achievements from '@/components/icons/Achievements.vue';
     }
 
     .character{
+        padding: 0.75rem;
         h1{
             text-align: center;
+            line-height: 100%;
+            color: c.$secondary;
         }
     }
 
@@ -46,5 +53,15 @@ import Achievements from '@/components/icons/Achievements.vue';
         box-sizing: border-box;
         border: none;
         border-radius: 24px;
+    }
+    .achivementButton{
+        background-color: c.$achievementButton;
+    }
+    .moneyBackground{
+        background-color: c.$kosmoBackground;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        color: c.$secondary;
     }
 </style>

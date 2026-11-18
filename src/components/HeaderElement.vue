@@ -25,11 +25,11 @@
     z-index: 10;
 
     display: flex;
-    align-items: center; 
+    align-items: center;
     padding: 0 24px;
 
     background-color: $modalBackground;
-    border: 2px solid $modalStroke;
+    border: 3px solid $modalStroke;
     border-radius: 24px;
 
     &__title {

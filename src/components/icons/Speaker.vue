@@ -34,7 +34,7 @@ onUnmounted((): void => {
 <template>
     <!-- "button" brings your global flex centering, no border and pointer cursor -->
     <!-- No button--round (it clips overflow, which would cut off the shadow) and no button--tts (the SVG draws its own pink circle) -->
-    <button type="button" class="button ttsButton" aria-label="Læs op" @click="onSpeak">
+    <button type="button" class="button button--drop-shadow ttsButton" aria-label="Læs op" @click="onSpeak">
         <!-- aria-hidden hides the picture from screen readers, the label above does the talking -->
         <!-- width and height are removed, so CSS controls the size -->
         <svg class="ttsButton__icon" viewBox="0 0 167 166" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -82,15 +82,10 @@ onUnmounted((): void => {
         width: 6rem;
         height: auto;
         /* Same flat shadow as the SVG filter: 4px down, no blur, colour #909DA2 */
-        filter: drop-shadow(0 4px 0 #909da2);
     }
 }
 
-/* "Pressed" effect: the icon drops down onto where its shadow was */
-.ttsButton:active .ttsButton__icon {
-    transform: translateY(4px);
-    filter: none;
-}
+
 
 /* Visible outline when using the keyboard, so you can see which button is focused */
 .ttsButton:focus-visible {

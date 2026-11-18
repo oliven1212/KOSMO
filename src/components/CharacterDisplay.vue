@@ -15,7 +15,7 @@ const equippedComponents = computed(() => {
 <template>
     <svg class="" viewBox="0 0 244 320" xmlns="http://www.w3.org/2000/svg">
         <Kosmo />
-        <component v-for="(item, i) in equippedComponents" :key="equipped[i]" :is="item"/>
+        <component v-for="(clothing, i) in equippedComponents" :key="equipped[i]" :is="clothing"/>
     </svg>
 </template>
 <style lang="scss" scoped>

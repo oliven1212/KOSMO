@@ -28,7 +28,9 @@ body{
     align-items: center;
     justify-content: center;
     border: none;
-    
+    &:has(svg){
+      padding: 16px;
+    }
     svg{
       height: 100%;
       width: auto;
@@ -48,6 +50,10 @@ body{
     box-sizing: border-box;
     overflow: hidden;
     height: 100%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: c.$white;
+    padding: 12px
   }
 
   &--primary{
@@ -57,13 +63,20 @@ body{
   &--tts{
     background-color: c.$readaloudButton;
   }
-    &--rounded{
+  &--rounded{
     border-radius: 24px;
     box-sizing: content-box;
     overflow: hidden;
-
-
   }
+  &--drop-shadow{
+    filter: drop-shadow(0px 4px 0px c.$shadowButton);
+
+    &:active,:focus{
+      transform: translateY(4px);
+      filter: none;
+    }
+  }
+
 }
 
 .modal{

@@ -7,5 +7,5 @@ export { default as Map } from './Map.vue';
 export { default as Start } from './Start.vue';
 export { default as TtsButton } from './Speaker.vue';
 export { default as TaskIcon } from './TaskIcon.vue';
-//export { default as Wardrobe } from './Wardrobe.vue';
+export { default as WardrobeIcon } from './WardrobeIcon.vue';
 // add a new line here each time you create a new editor component (alphabetical)
