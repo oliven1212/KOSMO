@@ -66,13 +66,13 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
         return unOwnedTryingOn.value.reduce((sum, item) => sum + item.price, 0);
     });
 
-    const canSave = computed<boolean>(() => unOwnedTryingOn.value.length === 0 );
+    const canSave = computed<boolean>(() => unOwnedTryingOn.value.length === 0);
 
     function tryOn(item: WardrobeItem): void {
         tryingOn.value[item.category] = item.id;
-    };
+    }
 
-    function buyTryingOn(): boolean {
+    function buyTryOn(): boolean {
         if (walletStore.wallet < unOwnedPrice.value) {
             return false;
         }
@@ -81,10 +81,9 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
         owned.value.push(...unOwnedTryingOn.value.map(item => item.id));
 
         return true;
-
     }
 
-    function save(): void {
+    function saveTryOn(): void {
         if (!canSave.value) {
             return;
         }
@@ -92,7 +91,7 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
         equipped.value = { ...tryingOn.value };
     }
 
-    function cancel(): void {
+    function cancelTryOn(): void {
         tryingOn.value = { ...equipped.value };
     }
 
@@ -109,9 +108,8 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
         itemsIn,
         isOwned,
         tryOn,
-        buyTryingOn,
-        save,
-        cancel,
+        buyTryOn,
+        saveTryOn,
+        cancelTryOn,
     };
-
 });
