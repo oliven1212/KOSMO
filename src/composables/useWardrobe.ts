@@ -1,7 +1,7 @@
 import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
-import { useWardrobeStore, type Category, type WardrobeItem } from '@/stores/wardrobe';
+import { useWardrobeStore, type Category, type FaceFeature, type SkinColor, type WardrobeItem } from '@/stores/wardrobe';
 import { useWalletStore } from '@/stores/wallet';
 import { categoryLabels, itemNames } from '@/utils/labels';
 
@@ -23,6 +23,8 @@ export interface ClothingCardData {
         clothing: string;
         selected: boolean;
         owned: boolean;
+        skin: SkinColor;
+        face: FaceFeature[];
     };
 }
 
@@ -71,6 +73,8 @@ export function useWardrobe(): UseWardrobe {
                 clothing: item.id,
                 selected: wardrobeStore.tryingOn[item.category] === item.id,
                 owned: wardrobeStore.isOwned(item.id),
+                skin: wardrobeStore.tryingOn.skin,
+                face: wardrobeStore.tryingOn.face,
             },
         }));
     });

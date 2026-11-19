@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BuyBox, ListContainer, TabBar } from '@/components';
+import { BodyPanel, BuyBox, ListContainer, TabBar } from '@/components';
 import { AcceptButton, TryAgainButton } from '@/components/buttons';
 import { useRoute } from 'vue-router';
 import { useWardrobe } from '@/composables/useWardrobe';
@@ -22,7 +22,9 @@ const {
                 <TabBar :tabs="tabs" v-model="activeTab" />
             </template>
 
-            <ListContainer :columns="4">
+            <BodyPanel v-if="activeTab === 'body'" />
+
+            <ListContainer v-else :columns="4">
                 <ClothingCard
                     v-for="card in cards"
                     :key="card.item.id"

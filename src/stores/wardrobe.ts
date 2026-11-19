@@ -2,23 +2,35 @@ import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import { useWalletStore } from './wallet';
 
-export type Category = 'body' | 'hair' | 'clothes' | 'accessories';
+// Kategorier med ting man kan købe (ét stykke per kategori)
+export type ItemCategory = 'hair' | 'clothes' | 'accessories';
+
+// Alle fanerne. 'body' er hudfarve og ansigt, som er gratis og ikke ligger i catalog
+export type Category = 'body' | ItemCategory;
+
+export type SkinColor = 'mint' | 'sky' | 'peach' | 'rose' | 'lemon' | 'lilac';
+export type FaceFeature = 'eyelashes' | 'cheeks';
+
+// Rækkefølgen de vises i på Krop-fanen
+export const skinColors: SkinColor[] = ['mint', 'sky', 'peach', 'rose', 'lemon', 'lilac'];
+export const faceFeatures: FaceFeature[] = ['eyelashes', 'cheeks'];
 
 export interface WardrobeItem {
     id: string;
     price: number;
-    category: Category;
+    category: ItemCategory;
 }
 
 export interface Outfit {
-    body?: string;
+    skin: SkinColor;
+    face: FaceFeature[];
     hair?: string;
     clothes?: string;
     accessories?: string;
 }
 
 // Rækkefølgen tøjet tegnes i. Senere = ovenpå, så en hat kommer over tøjet
-const layerOrder: Category[] = ['body', 'hair', 'clothes', 'accessories'];
+const layerOrder: ItemCategory[] = ['hair', 'clothes', 'accessories'];
 
 export const useWardrobeStore = defineStore('wardrobe', () => {
 
@@ -33,8 +45,13 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
     ];
 
     const owned = ref<string[]>(['YellowOutfit']); // Start med en gratis outfit
-    const equipped = ref<Outfit>({ clothes: 'YellowOutfit' }); // Hvilket tøj der er på Kosmo lige nu
-    const tryingOn = ref<Outfit>({ ...equipped.value }); // Hvilket tøj der er på Kosmo i prøverummet
+    const equipped = ref<Outfit>({ skin: 'mint', face: ['cheeks'], clothes: 'YellowOutfit' }); // Det Kosmo har på lige nu
+    const tryingOn = ref<Outfit>(copyOutfit(equipped.value)); // Det Kosmo har på i prøverummet
+
+    // Kopi med sin egen face-liste, så tryingOn og equipped aldrig deler den samme liste
+    function copyOutfit(outfit: Outfit): Outfit {
+        return { ...outfit, face: [...outfit.face] };
+    }
 
     function getItem(id: string): WardrobeItem | undefined {
         return catalog.find(item => item.id === id);
@@ -72,6 +89,19 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
         tryingOn.value[item.category] = item.id;
     }
 
+    function setSkin(color: SkinColor): void {
+        tryingOn.value.skin = color;
+    }
+
+    // Tænd/sluk for øjenvipper eller kinder
+    function toggleFace(feature: FaceFeature): void {
+        const face = tryingOn.value.face;
+
+        tryingOn.value.face = face.includes(feature)
+            ? face.filter(f => f !== feature)
+            : [...face, feature];
+    }
+
     function buyTryOn(): boolean {
         if (walletStore.wallet < unOwnedPrice.value) {
             return false;
@@ -88,11 +118,11 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
             return;
         }
 
-        equipped.value = { ...tryingOn.value };
+        equipped.value = copyOutfit(tryingOn.value);
     }
 
     function cancelTryOn(): void {
-        tryingOn.value = { ...equipped.value };
+        tryingOn.value = copyOutfit(equipped.value);
     }
 
     return {
@@ -108,6 +138,8 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
         itemsIn,
         isOwned,
         tryOn,
+        setSkin,
+        toggleFace,
         buyTryOn,
         saveTryOn,
         cancelTryOn,
