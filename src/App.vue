@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterView } from 'vue-router';
-import TaskDescriptionModal from '@/components/modals/TaskDescriptionModal.vue';
-import { countryGameDescription } from '@/content/tasksTexts';
+import TaskResultModal from '@/components/modals/TaskResultModal.vue';
 // true means the modal is mounted, false removes it
 const showDescription = ref(false);
 </script>
@@ -14,9 +13,10 @@ const showDescription = ref(false);
     </button>
 
     <!-- Exists only while showDescription is true; @close sets it back to false -->
-    <TaskDescriptionModal
+    <TaskResultModal
         v-if="showDescription"
-        :content="countryGameDescription"
+        :isCorrect="false"
+        :fact="'Vidste du at...'"
         @close="showDescription = false"
     />
     <!-- Your normal pages -->

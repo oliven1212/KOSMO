@@ -67,7 +67,7 @@ function onConfirm(): void {
     <!-- @cancel.prevent stops the Esc key from closing it -->
     <dialog ref="dialogRef" class="modal taskConfirmModal h-vh--25" @cancel.prevent>
         <!-- Show the text prop on screen -->
-        <p class="taskConfirmModal__text">
+        <p class="modal__text">
             {{ text }}
         </p>
 

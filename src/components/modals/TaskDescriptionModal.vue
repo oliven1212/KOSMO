@@ -65,7 +65,7 @@ function onClose(): void {
     <!-- @cancel.prevent stops the Esc key from closing it -->
     <dialog ref="dialogRef" class="modal taskDescriptionModal" @cancel.prevent>
         <!-- The title from the content prop -->
-        <p class="taskDescriptionModal__title">
+        <p class="modal__title">
             {{ content.title }}
         </p>
 
