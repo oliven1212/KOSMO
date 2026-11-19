@@ -1,8 +1,20 @@
-//@import './base.css';
+@use '@/assets/scss/abstracts/colors' as c;
+@use '@/assets/scss/abstracts/fonts';
+
+
+@use 'globals/dimensions';
+@use 'globals/flex';
+@use 'globals/grid';
+@use 'globals/margin';
+@use 'globals/padding';
+
 body{
   padding: 0;
   margin: 0;
   overflow: hidden;
+  font-family: 'Baloo 2', sans-serif;
+  text-wrap: balance;
+  text-wrap: pretty;
 }
 #app {
   max-width: 1280px;
@@ -10,4 +22,84 @@ body{
   margin: 0;
   padding: 0;
   font-weight: normal;
+}
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    &:has(svg){
+      padding: 16px;
+    }
+    svg{
+      height: 100%;
+      width: auto;
+    }
+    
+  &:hover{
+    cursor: pointer;
+  }
+
+  &:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--danger{
+    background-color: c.$dangerButton;
+  }
+
+  &--round{
+    aspect-ratio: 1/1;
+    border-radius: 999px;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: c.$white;
+    padding: 12px
+  }
+
+  &--primary{
+    background-color: c.$primary;
+  }
+
+  &--tts{
+    background-color: c.$readaloudButton;
+  }
+  &--rounded{
+    border-radius: 24px;
+    box-sizing: content-box;
+    overflow: hidden;
+  }
+  &--drop-shadow{
+    filter: drop-shadow(0px 4px 0px c.$shadowButton);
+
+/* Pressed effect only while the button is being pressed */
+    &:active {
+        transform: translateY(4px);
+        filter: none;
+    }
+  }
+
+}
+
+.modal{
+  background-color: c.$modalBackground;
+  border-color: c.$modalStroke;
+  border-width: 3px;
+  border-style: solid;
+  box-sizing: border-box;
+  border-radius: 24px;
+
+  &-overlay--dark{
+    background-color: c.$overlay;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: grid;
+  }
 }

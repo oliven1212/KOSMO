@@ -1,46 +1,48 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
-import CharacterDisplay from '@/components/CharacterDisplay.vue';
+import ProfileInfo from '@/components/ProfileInfo.vue';
 import Map from '@/components/icons/Map.vue';
+import { useLoginStore } from '@/stores/login';
+
+const loginStore = useLoginStore();
 
 </script>
 
 <template>
-
-    <div class="fillScreen background">
-        <Map/>
+    <div class="w-vw--100 h-vh--100 flex fillScreen background">
+        <Map class="w--auto h--100 ms--auto" />
     </div>
-    <div class="fillScreen asideSplit">    
-        <CharacterDisplay v-if="1==1"/>
-        <RouterView/>
+    <div class="w-vw--100 h-vh--100 grid fillScreen asideSplit">    
+        <ProfileInfo v-if="loginStore.loggedIn == true"/>
+        <slot/>
     </div>
 
 </template>
 
 <style lang="scss" scoped>
+@use '@/assets/scss/abstracts/colors' as c;
     .fillScreen{
-        height: 100vh;
-        width: 100vw;
         position: absolute;
         overflow: hidden;
     }
 
     .background{
-        background: #3986B7;
-        display: flex;
+        background: c.$background;
         box-sizing: border-box;
         padding-right: 10%; //Moves the background left and right
     }
 
     .background svg{
         object-fit: contain;
-        width: auto;
-        height: 100%;
-        margin-left: auto;
     }
 
     .asideSplit{
-        display: grid;
-        grid-template-columns: 20% auto;
+        grid-template-columns: clamp(190px, 24%, 300px) minmax(0, 1fr); // ProfileInfo aldrig smallere end 190px, så modalen ikke lægger sig ovenpå
+        column-gap: 16px;
+        align-content: center;     // rækken får ProfileInfos højde, så modalen kan matche den
+        pointer-events: none;      // tomme områder lader klik gå igennem til kortet
+
+        > * {
+            pointer-events: auto;  // men ProfileInfo, header osv. kan stadig klikkes
+        }
     }
 </style>

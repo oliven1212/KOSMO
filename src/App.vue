@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import FindCountryView from './views/games/border/FindCountryView.vue';
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-<FindCountryView></FindCountryView>
+    <RouterView />
 </template>
 
-<style>
+<style scoped lang="scss">
 
 </style>
