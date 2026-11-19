@@ -1,3 +1,4 @@
+export { default as AcceptIcon } from './AcceptIcon.vue';
 export { default as Achievements } from './Achievements.vue';
 export { default as Back } from './Back.vue';
 export { default as Coins } from './Coins.vue';

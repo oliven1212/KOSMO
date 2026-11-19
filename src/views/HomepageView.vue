@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ListContainer } from '@/components';
+import { ListContainer, TabBar } from '@/components';
 import { useRoute } from 'vue-router';
 import { useWardrobe } from '@/composables/useWardrobe';
 
@@ -8,12 +8,15 @@ import MenuModal from '@/components/modals/MenuModal.vue';
 import ClothingCard from '@/components/ClothingCard.vue';
 
 const route = useRoute();
-const { cards, select } = useWardrobe();
+const { activeTab, tabs, cards, select } = useWardrobe();
 </script>
 
 <template>
     <MapLayout>
         <MenuModal v-if="route.name === 'wardrobe'" title="Garderobe">
+            <template #tabs>
+                <TabBar :tabs="tabs" v-model="activeTab" />
+            </template>
             <ListContainer :columns="4">
                 <ClothingCard
                     v-for="card in cards"
