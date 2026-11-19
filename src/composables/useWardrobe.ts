@@ -1,5 +1,5 @@
 import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useWardrobeStore, type Category, type WardrobeItem } from '@/stores/wardrobe';
 import { categoryLabels, itemNames } from '@/utils/labels';
@@ -33,6 +33,7 @@ export interface UseWardrobe {
     unOwnedPrice: ComputedRef<number>;
     canSave: ComputedRef<boolean>;
     select: (item: WardrobeItem) => void;
+    saveAndClose: () => Promise<void>;
     saveTryOn: () => void;
     cancelTryOn: () => void;
     buyTryOn: () => boolean;
@@ -41,6 +42,7 @@ export interface UseWardrobe {
 export function useWardrobe(): UseWardrobe {
     const wardrobeStore = useWardrobeStore();
     const route = useRoute();
+    const router = useRouter();
 
     // storeToRefs, så værdierne stadig er reaktive efter destructuring
     const { tryingOnList, unOwnedPrice, canSave } = storeToRefs(wardrobeStore);
@@ -69,6 +71,16 @@ export function useWardrobe(): UseWardrobe {
         wardrobeStore.tryOn(item);
     }
 
+    // Gem (det grønne flueben): gemmer outfittet og lukker garderoben
+    async function saveAndClose(): Promise<void> {
+        if (!canSave.value) {
+            return;
+        }
+
+        wardrobeStore.saveTryOn();
+        await router.push({ name: 'homepage' });
+    }
+
     watch(() => route.name, (newName, oldName) => {
         if (oldName === 'wardrobe' && newName !== 'wardrobe') {
             wardrobeStore.cancelTryOn();
@@ -83,6 +95,7 @@ export function useWardrobe(): UseWardrobe {
         unOwnedPrice,
         canSave,
         select,
+        saveAndClose,
         saveTryOn: wardrobeStore.saveTryOn,
         cancelTryOn: wardrobeStore.cancelTryOn,
         buyTryOn: wardrobeStore.buyTryOn,

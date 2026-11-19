@@ -40,6 +40,11 @@ body{
     cursor: pointer;
   }
 
+  &:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   &--danger{
     background-color: c.$dangerButton;
   }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ListContainer, TabBar } from '@/components';
+import { AcceptButton, TryAgainButton } from '@/components/buttons';
 import { useRoute } from 'vue-router';
 import { useWardrobe } from '@/composables/useWardrobe';
 
@@ -8,7 +9,7 @@ import MenuModal from '@/components/modals/MenuModal.vue';
 import ClothingCard from '@/components/ClothingCard.vue';
 
 const route = useRoute();
-const { activeTab, tabs, cards, select } = useWardrobe();
+const { activeTab, tabs, cards, canSave, select, saveAndClose, cancelTryOn } = useWardrobe();
 </script>
 
 <template>
@@ -17,6 +18,7 @@ const { activeTab, tabs, cards, select } = useWardrobe();
             <template #tabs>
                 <TabBar :tabs="tabs" v-model="activeTab" />
             </template>
+
             <ListContainer :columns="4">
                 <ClothingCard
                     v-for="card in cards"
@@ -25,6 +27,11 @@ const { activeTab, tabs, cards, select } = useWardrobe();
                     @select="select(card.item)"
                 ></ClothingCard>
             </ListContainer>
+
+            <template #actions>
+                <TryAgainButton aria-label="Fortryd" @click="cancelTryOn" />
+                <AcceptButton :disabled="!canSave" @click="saveAndClose" />
+            </template>
         </MenuModal>
 
         <MenuModal v-if="route.name === 'achievement'" title="Præstationer">

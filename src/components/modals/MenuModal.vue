@@ -20,7 +20,12 @@ defineProps<{
                 <CloseButton class="menuModal__close" />
             </div>
 
-            <slot /> <!-- ListContainer, knapper osv. -->
+            <slot /> <!-- ListContainer osv. -->
+
+            <!-- Knapper nederst, fx Fortryd og Gem -->
+            <div v-if="$slots.actions" class="menuModal__actions">
+                <slot name="actions" />
+            </div>
         </div>
     </div>
 </template>
@@ -28,20 +33,20 @@ defineProps<{
 <style lang="scss" scoped>
 .menuModal {
     box-sizing: border-box;
-    height: 100%;          // samme højde som ProfileInfo
+    height: 100%; // samme højde som ProfileInfo
     margin-right: 12vw;
 
     &__content {
         flex: 1;
-        overflow: auto;    // scroller, hvis der er mange stykker tøj
+        overflow: auto; // scroller, hvis der er mange stykker tøj
         display: flex;
         flex-direction: column;
-        gap: 24px;         // luft mellem toprækken og listen
+        gap: 24px; // luft mellem toprækken og listen
     }
 
     &__top {
         display: grid;
-        grid-template-columns: 44px 1fr 44px;   // tom kolonne til venstre, så fanerne står i midten
+        grid-template-columns: 44px 1fr 44px; // tom kolonne til venstre, så fanerne står i midten
         align-items: center;
         gap: 16px;
     }
@@ -56,6 +61,19 @@ defineProps<{
         grid-column: 3;
         width: 44px;
         height: 44px;
+    }
+
+    &__actions {
+        margin-top: auto; // skubber knapperne helt ned
+        display: flex;
+        justify-content: flex-end;
+        gap: 16px;
+
+        > * {
+            width: 56px;
+            height: 56px;
+            padding: 10px;  // mindre end standard 16px, så ikonet bliver større
+        }
     }
 }
 </style>

@@ -10,7 +10,7 @@ import AcceptIcon from '@/components/icons/AcceptIcon.vue';
         class="
         button
         button--round
-        button--success
+        button--primary
         button--drop-shadow">
         <AcceptIcon />
     </button>
