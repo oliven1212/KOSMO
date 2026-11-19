@@ -31,10 +31,16 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
+@use '@/assets/scss/abstracts/sizes' as s;
+
 .menuModal {
     box-sizing: border-box;
     height: 100%; // samme højde som ProfileInfo
     margin-right: 12vw;
+
+    @media (max-width: s.$breakpointCompact) {
+        margin-right: 16px;   // på tablet er der ikke plads at spilde
+    }
 
     &__content {
         flex: 1;
@@ -67,6 +73,7 @@ defineProps<{
         margin-top: auto; // skubber knapperne helt ned
         position: relative; // så indhold kan placeres i forhold til rækken, fx køb-boksen i midten
         display: flex;
+        flex-wrap: wrap;   // så køb-boksen kan få sin egen række på små skærme
         justify-content: flex-end;
         align-items: center;
         gap: 16px;

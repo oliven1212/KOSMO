@@ -36,7 +36,8 @@ const loginStore = useLoginStore();
     }
 
     .asideSplit{
-        grid-template-columns: 20% auto;
+        grid-template-columns: clamp(190px, 24%, 300px) minmax(0, 1fr); // ProfileInfo aldrig smallere end 190px, så modalen ikke lægger sig ovenpå
+        column-gap: 16px;
         align-content: center;     // rækken får ProfileInfos højde, så modalen kan matche den
         pointer-events: none;      // tomme områder lader klik gå igennem til kortet
 

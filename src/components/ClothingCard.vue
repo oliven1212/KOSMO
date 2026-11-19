@@ -46,7 +46,11 @@ defineEmits<{ select: [] }>();
         height: auto;
         align-self: center;
         }
-    &__footer { align-items: center; }
+    &__footer {
+        align-items: center;
+        flex-wrap: wrap;   // prisen lægger sig under navnet, når kortet er smalt
+        gap: 2px 8px;
+    }
     &__name {
         font-family: 'Baloo 2', sans-serif;
         font-weight: 700;

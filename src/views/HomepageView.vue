@@ -48,6 +48,8 @@ const {
 </template>
 
 <style scoped lang="scss">
+@use '@/assets/scss/abstracts/sizes' as s;
+
 // Midt i modalen, uafhængigt af knapperne til højre
 .wardrobe__buyBox {
     position: absolute;
@@ -56,5 +58,14 @@ const {
     transform: translate(-50%, -50%);
     width: max-content;              // teksten på én linje, når der er plads
     max-width: calc(100% - 288px);   // men aldrig ind over knapperne (2 × 56px + mellemrum, på begge sider)
+
+    // På små skærme er der ikke plads i midten: boksen får sin egen række over knapperne
+    @media (max-width: s.$breakpointCompact) {
+        position: static;
+        transform: none;
+        width: auto;
+        max-width: none;
+        flex-basis: 100%;
+    }
 }
 </style>
