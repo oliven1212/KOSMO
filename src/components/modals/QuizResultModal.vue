@@ -26,7 +26,7 @@
 <script setup lang="ts">
 // Bring in the Vue tools we use: computed (derived value), onMounted (runs on appear) and ref (holds the dialog)
 import { onMounted, ref } from 'vue';
-import { TtsButton, WardrobeButton } from '@/components/buttons';
+import { CloseButton, TtsButton, WardrobeButton } from '@/components/buttons';
 
 // Required prop: the parent must pass a complete TaskDescription
 const props = defineProps<{
@@ -87,8 +87,8 @@ function onClose(): void {
         <div class="flex flex--just-between h--25">
             <TtsButton :text="spokenText" />
             <div class="flex flex--gapcol-5 ">
-            <WardrobeButton @click="onClose" />
-            <button type="button" class="button" @click="onClose">Tilbage til kortet</button>
+                <WardrobeButton @click="onClose" />
+                <CloseButton @click="onClose" />
             </div>
         </div>
     </dialog>
