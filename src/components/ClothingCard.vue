@@ -6,6 +6,7 @@ defineProps<{
     price: number;
     clothing: string;
     selected?: boolean;
+    owned?: boolean;   // ejer man det, vises prisen ikke
 }>();
 
 defineEmits<{ select: [] }>();
@@ -18,7 +19,7 @@ defineEmits<{ select: [] }>();
         <CharacterDisplay :clothes="[clothing]" class="clothingCard__image" />
         <div class="flex flex--just-between clothingCard__footer">
             <span class="clothingCard__name">{{ name }}</span>
-            <MoneyDisplay :amount="price" />
+            <MoneyDisplay v-if="!owned" :amount="price" />
         </div>
     </button>
 </template>
@@ -37,6 +38,7 @@ defineEmits<{ select: [] }>();
 
     &--selected {
         border-color: c.$modalSelected;
+        filter: none;   // valgt kort er "trykket ned", derfor ingen skygge
     }
 
     &__image {

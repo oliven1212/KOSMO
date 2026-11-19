@@ -34,7 +34,7 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
 
     const owned = ref<string[]>(['YellowOutfit']); // Start med en gratis outfit
     const equipped = ref<Outfit>({ clothes: 'YellowOutfit' }); // Hvilket tøj der er på Kosmo lige nu
-    const tryingOn = ref<Outfit>({ ...wearing.value }); // Hvilket tøj der er på Kosmo i prøverummet
+    const tryingOn = ref<Outfit>({ ...equipped.value }); // Hvilket tøj der er på Kosmo i prøverummet
 
     function getItem(id: string): WardrobeItem | undefined {
         return catalog.find(item => item.id === id);
@@ -66,13 +66,13 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
         return unOwnedTryingOn.value.reduce((sum, item) => sum + item.price, 0);
     });
 
-    const canSave = computed<boolean>(() => unOwnedTryingOn.value.length === 0 );
+    const canSave = computed<boolean>(() => unOwnedTryingOn.value.length === 0);
 
     function tryOn(item: WardrobeItem): void {
         tryingOn.value[item.category] = item.id;
-    };
+    }
 
-    function buyTryingOn(): boolean {
+    function buyTryOn(): boolean {
         if (walletStore.wallet < unOwnedPrice.value) {
             return false;
         }
@@ -81,12 +81,35 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
         owned.value.push(...unOwnedTryingOn.value.map(item => item.id));
 
         return true;
-
     }
 
-    function save(): void {
-        if (!canSave.value) return;
+    function saveTryOn(): void {
+        if (!canSave.value) {
+            return;
+        }
+
         equipped.value = { ...tryingOn.value };
     }
 
+    function cancelTryOn(): void {
+        tryingOn.value = { ...equipped.value };
+    }
+
+    return {
+        catalog,
+        owned,
+        equipped,
+        tryingOn,
+        tryingOnList,
+        unOwnedTryingOn,
+        unOwnedPrice,
+        canSave,
+        getItem,
+        itemsIn,
+        isOwned,
+        tryOn,
+        buyTryOn,
+        saveTryOn,
+        cancelTryOn,
+    };
 });

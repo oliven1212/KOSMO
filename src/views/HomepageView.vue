@@ -1,24 +1,45 @@
 <script setup lang="ts">
+import { BuyBox, ListContainer, TabBar } from '@/components';
+import { AcceptButton, TryAgainButton } from '@/components/buttons';
 import { useRoute } from 'vue-router';
+import { useWardrobe } from '@/composables/useWardrobe';
+
 import MapLayout from '@/layouts/MapLayout.vue';
 import MenuModal from '@/components/modals/MenuModal.vue';
-import { ListContainer, ClothingCard } from '@/components';
+import ClothingCard from '@/components/ClothingCard.vue';
 
 const route = useRoute();
+const {
+    activeTab, tabs, cards, unOwnedPrice, canSave, canAfford,
+    select, saveAndClose, cancelTryOn, buyTryOn,
+} = useWardrobe();
 </script>
 
 <template>
     <MapLayout>
-
         <MenuModal v-if="route.name === 'wardrobe'" title="Garderobe">
+            <template #tabs>
+                <TabBar :tabs="tabs" v-model="activeTab" />
+            </template>
+
             <ListContainer :columns="4">
-                <ClothingCard name="Blå outfit" :price="100" clothing="BlueOutfit" />
-                <ClothingCard name="Grøn sweater" :price="100" clothing="GreenOutfit" />
-                <ClothingCard name="Gul hoodie" :price="100" clothing="YellowOutfit" />
-                <ClothingCard name="Lyserød kjole" :price="100" clothing="PinkOutfit" />
-                <ClothingCard name="Rumdragt" :price="100" clothing="SpaceOutfit" selected />
+                <ClothingCard
+                    v-for="card in cards"
+                    :key="card.item.id"
+                    v-bind="card.props"
+                    @select="select(card.item)"
+                ></ClothingCard>
             </ListContainer>
 
+            <template #actions>
+                <BuyBox
+                    v-if="unOwnedPrice > 0"
+                    class="wardrobe__buyBox"
+                    :disabled="!canAfford"
+                    @buy="buyTryOn" />
+                <TryAgainButton aria-label="Fortryd" @click="cancelTryOn" />
+                <AcceptButton :disabled="!canSave" @click="saveAndClose" />
+            </template>
         </MenuModal>
 
         <MenuModal v-if="route.name === 'achievement'" title="Præstationer">
@@ -26,4 +47,14 @@ const route = useRoute();
     </MapLayout>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+// Midt i modalen, uafhængigt af knapperne til højre
+.wardrobe__buyBox {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;              // teksten på én linje, når der er plads
+    max-width: calc(100% - 288px);   // men aldrig ind over knapperne (2 × 56px + mellemrum, på begge sider)
+}
+</style>
