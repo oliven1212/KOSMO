@@ -1,4 +1,5 @@
 // components
+export { default as BuyBox } from './BuyBox.vue';
 export { default as CharacterDisplay } from './CharacterDisplay.vue';
 export { default as ClothingCard } from './ClothingCard.vue';
 export { default as HeaderElement } from './HeaderElement.vue';

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ListContainer, TabBar } from '@/components';
+import { BuyBox, ListContainer, TabBar } from '@/components';
 import { AcceptButton, TryAgainButton } from '@/components/buttons';
 import { useRoute } from 'vue-router';
 import { useWardrobe } from '@/composables/useWardrobe';
@@ -9,7 +9,10 @@ import MenuModal from '@/components/modals/MenuModal.vue';
 import ClothingCard from '@/components/ClothingCard.vue';
 
 const route = useRoute();
-const { activeTab, tabs, cards, canSave, select, saveAndClose, cancelTryOn } = useWardrobe();
+const {
+    activeTab, tabs, cards, unOwnedPrice, canSave, canAfford,
+    select, saveAndClose, cancelTryOn, buyTryOn,
+} = useWardrobe();
 </script>
 
 <template>
@@ -29,6 +32,11 @@ const { activeTab, tabs, cards, canSave, select, saveAndClose, cancelTryOn } = u
             </ListContainer>
 
             <template #actions>
+                <BuyBox
+                    v-if="unOwnedPrice > 0"
+                    class="wardrobe__buyBox"
+                    :disabled="!canAfford"
+                    @buy="buyTryOn" />
                 <TryAgainButton aria-label="Fortryd" @click="cancelTryOn" />
                 <AcceptButton :disabled="!canSave" @click="saveAndClose" />
             </template>
@@ -39,4 +47,14 @@ const { activeTab, tabs, cards, canSave, select, saveAndClose, cancelTryOn } = u
     </MapLayout>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+// Midt i modalen, uafhængigt af knapperne til højre
+.wardrobe__buyBox {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;              // teksten på én linje, når der er plads
+    max-width: calc(100% - 288px);   // men aldrig ind over knapperne (2 × 56px + mellemrum, på begge sider)
+}
+</style>

@@ -65,11 +65,14 @@ defineProps<{
 
     &__actions {
         margin-top: auto; // skubber knapperne helt ned
+        position: relative; // så indhold kan placeres i forhold til rækken, fx køb-boksen i midten
         display: flex;
         justify-content: flex-end;
+        align-items: center;
         gap: 16px;
 
-        > * {
+        // :slotted, fordi knapperne kommer udefra (fra viewet) gennem slottet
+        :slotted(.button--round) {
             width: 56px;
             height: 56px;
             padding: 10px;  // mindre end standard 16px, så ikonet bliver større

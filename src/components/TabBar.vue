@@ -33,6 +33,7 @@ const activeTab = defineModel<T>({ required: true });
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:color';
 @use '@/assets/scss/abstracts/colors' as c;
 
 .tabBar {
@@ -48,10 +49,12 @@ const activeTab = defineModel<T>({ required: true });
         font: inherit;
         font-weight: bold;
         cursor: pointer;
+        filter: drop-shadow(0px 4px 0px color.scale(c.$achievementButton, $lightness: -20%)); 
 
         &--active {
             background-color: c.$wardrobeButton;
             color: c.$white;
+            filter: drop-shadow(0px 4px 0px color.scale(c.$wardrobeButton, $lightness: -25%));
         }
 
         &:disabled {

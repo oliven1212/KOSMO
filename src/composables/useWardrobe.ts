@@ -2,6 +2,7 @@ import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useWardrobeStore, type Category, type WardrobeItem } from '@/stores/wardrobe';
+import { useWalletStore } from '@/stores/wallet';
 import { categoryLabels, itemNames } from '@/utils/labels';
 
 export interface WardrobeTab {
@@ -21,6 +22,7 @@ export interface ClothingCardData {
         price: number;
         clothing: string;
         selected: boolean;
+        owned: boolean;
     };
 }
 
@@ -32,6 +34,7 @@ export interface UseWardrobe {
     tryingOnList: ComputedRef<string[]>;
     unOwnedPrice: ComputedRef<number>;
     canSave: ComputedRef<boolean>;
+    canAfford: ComputedRef<boolean>;
     select: (item: WardrobeItem) => void;
     saveAndClose: () => Promise<void>;
     saveTryOn: () => void;
@@ -41,11 +44,15 @@ export interface UseWardrobe {
 
 export function useWardrobe(): UseWardrobe {
     const wardrobeStore = useWardrobeStore();
+    const walletStore = useWalletStore();
     const route = useRoute();
     const router = useRouter();
 
     // storeToRefs, så værdierne stadig er reaktive efter destructuring
     const { tryingOnList, unOwnedPrice, canSave } = storeToRefs(wardrobeStore);
+
+    // Har man penge nok til det, man prøver og ikke ejer?
+    const canAfford = computed<boolean>(() => walletStore.wallet >= unOwnedPrice.value);
 
     const activeTab = ref<Category>('clothes');
 
@@ -63,6 +70,7 @@ export function useWardrobe(): UseWardrobe {
                 price: item.price,
                 clothing: item.id,
                 selected: wardrobeStore.tryingOn[item.category] === item.id,
+                owned: wardrobeStore.isOwned(item.id),
             },
         }));
     });
@@ -94,6 +102,7 @@ export function useWardrobe(): UseWardrobe {
         tryingOnList,
         unOwnedPrice,
         canSave,
+        canAfford,
         select,
         saveAndClose,
         saveTryOn: wardrobeStore.saveTryOn,
