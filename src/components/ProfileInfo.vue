@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { AchievementButton, WardrobeButton } from '@/components/buttons';
 import { CharacterDisplay, MoneyDisplay, XPBar } from '@/components';
+import { storeToRefs } from 'pinia';
 
 import { useWalletStore } from '@/stores/wallet';
+import { useWardrobeStore } from '@/stores/wardrobe';
 
+const { tryingOnList } = storeToRefs(useWardrobeStore());
 const walletStore = useWalletStore();
 
 </script>
@@ -20,7 +23,7 @@ const walletStore = useWalletStore();
             </div>
             <div class="flex flex--column w--100">
                 <h1 class="w--100 m--0">Kosmo</h1>
-                <CharacterDisplay class="kosmoContainer px--2 py--3 w--100"/>
+                <CharacterDisplay :clothes="tryingOnList" class="kosmoContainer px--2 py--3 w--100"/>
             </div>
             <div class="w--100 grid grid--cols-2 grid--gap-3 px--3">
                 <WardrobeButton/>
