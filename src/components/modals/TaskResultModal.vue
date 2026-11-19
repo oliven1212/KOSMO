@@ -1,24 +1,24 @@
 <!--
-    TaskDescriptionModal
+    TaskResultModal
 
-    Shows the instructions for a task: a title and a list of steps, with a button that reads them aloud.
-    Knows nothing about which game it is used in. The parent decides which text to show.
+    Shows the result of an answer: "Rigtigt!" or "Forkert", a fact, and a button that reads both aloud.
+    Knows nothing about which game it is used in. The parent decides whether the answer was correct and which fact to show.
 
     Usage in the parent example:
-        import { countryGameDescription } from '@/content/tasksTexts';
+        const showResult = ref(false);
+        const isCorrect = ref(false);
 
-        const showDescription = ref(true);
-
-        <TaskDescriptionModal
-            v-if="showDescription"
-            :content="countryGameDescription"
-            @close="showDescription = false"
+        <TaskResultModal
+            v-if="showResult"
+            :isCorrect="isCorrect"
+            fact="Vand dækker cirka 71 procent af Jordens overflade."
+            @close="showResult = false"
         />
 
     Rules:
         - Always mount it with v-if, because it opens itself in onMounted.
-        - content must be a complete TaskDescription (title and items), never an empty object.
-        - @close must clear the parent's state, or the modal never disappears.
+        - Set isCorrect and fact BEFORE showing it. They are read once when the modal is created, so changing them while it is open does nothing.
+        - @close must clear the parent's state, or the modal never disappears. The parent also decides what happens next (e.g. the next task).
 -->
 
 <script setup lang="ts">
