@@ -38,10 +38,12 @@ const activeTab = defineModel<T>({ required: true });
 
 .tabBar {
     display: flex;
-    gap: 12px;
+    flex-wrap: wrap;           // fanerne må gå på to linjer, hvis der slet ikke er plads
+    justify-content: center;
+    gap: 8px;
 
     &__tab {
-        padding: 8px 24px;
+        padding: 6px 16px;
         border: none;
         border-radius: 999px;
         background-color: c.$achievementButton;
