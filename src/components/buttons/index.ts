@@ -1,3 +1,4 @@
+export { default as AcceptButton } from './AcceptButton.vue';
 export { default as AchievementButton } from './AchievementButton.vue';
 export { default as CloseButton } from './CloseButton.vue';
 export { default as NextButton } from './NextButton.vue';
