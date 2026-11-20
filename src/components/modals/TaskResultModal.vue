@@ -84,7 +84,20 @@ function onClose(): void {
 </template>
 
 <style scoped lang="scss">
+// Sass colour functions, and the project's colour variables
+@use 'sass:color';
+@use '@/assets/scss/abstracts/colors' as *;
+
 .taskResultModal {
     width: 672px;
+    // See-through background: the modal colour at 85% opacity, so the map shows through (lower it for more)
+    background-color: color.change($modalBackground, $alpha: 0.85);
+    // Sit near the bottom of the screen instead of the middle, so the highlighted country stays visible
+    margin: auto auto 24px;
+
+    // No dark layer behind the modal, so the map is not dimmed
+    &::backdrop {
+        background: transparent;
+    }
 }
 </style>
