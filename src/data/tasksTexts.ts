@@ -27,7 +27,7 @@ export const waterPhasesGameDescription: TaskDescription = {
         'Når du er tilfreds skal du bekræfte og gå videre til næste opgave.',
     ],
 };
- 
+
 // Texts for the country game's description modal
 export const waterAmountGameDescription: TaskDescription = {
     title: 'Hverdagens mængde af vand ',
