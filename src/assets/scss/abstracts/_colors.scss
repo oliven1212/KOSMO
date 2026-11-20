@@ -35,11 +35,12 @@ $kosmoLemon: #E9E289;
 $kosmoAcid: #CFB9F0;
 $kosmoCheeks: #EF7D88;
 
-
-
-
-
-
-
-
-
+// Kosmos hudfarver. Nøglerne skal matche SkinColor i stores/wardrobe.ts
+$skinColors: (
+    mint: $kosmoMint,
+    sky: $kosmoSky,
+    peach: $kosmoPeach,
+    rose: $kosmoRose,
+    lemon: $kosmoLemon,
+    lilac: $kosmoAcid,
+);

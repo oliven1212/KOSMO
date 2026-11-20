@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { CharacterDisplay, MoneyDisplay } from '@/components';
+import type { FaceFeature, SkinColor } from '@/stores/wardrobe';
 
 defineProps<{
     name: string;
@@ -7,6 +8,8 @@ defineProps<{
     clothing: string;
     selected?: boolean;
     owned?: boolean;   // ejer man det, vises prisen ikke
+    skin?: SkinColor;  // så Kosmo på kortet har samme hudfarve og ansigt som i prøverummet
+    face?: FaceFeature[];
 }>();
 
 defineEmits<{ select: [] }>();
@@ -16,7 +19,7 @@ defineEmits<{ select: [] }>();
 <template>
     <button class="clothingCard p--2 flex flex--column flex--gap-2" :class="{ 'clothingCard--selected' : selected }"
     @click="$emit('select')">
-        <CharacterDisplay :clothes="[clothing]" class="clothingCard__image" />
+        <CharacterDisplay :clothes="[clothing]" :skin="skin" :face="face" class="clothingCard__image" />
         <div class="flex flex--just-between clothingCard__footer">
             <span class="clothingCard__name">{{ name }}</span>
             <MoneyDisplay v-if="!owned" :amount="price" />

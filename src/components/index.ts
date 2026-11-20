@@ -1,4 +1,5 @@
 // components
+export { default as BodyPanel } from './BodyPanel.vue';
 export { default as BuyBox } from './BuyBox.vue';
 export { default as CharacterDisplay } from './CharacterDisplay.vue';
 export { default as ClothingCard } from './ClothingCard.vue';
