@@ -4,7 +4,7 @@ import ThermometerElement from '@/components/games/ThermometerElement.vue';
 import DropBox from '@/components/games/DropBox.vue';
 import DragElement from '@/components/games/DragElement.vue';
 import { HeaderElement, TaskDescriptionModal } from '@/components';
-import { waterPhasesGameDescription } from '@/content/tasksTexts';
+import { waterPhasesGameDescription } from '@/data/tasksTexts';
 
 // Show the task description modal when the game starts
 const showDescription = ref(true);
