@@ -21,7 +21,7 @@ const router = createRouter({
         {
             path: '/is',
             name: 'is',
-            component: () => import('@/views/HomepageView.vue'),
+            component: () => import('@/views/games/icecream/TemperatureView.vue'),
         },
         {
             path: '/wardrobe',
