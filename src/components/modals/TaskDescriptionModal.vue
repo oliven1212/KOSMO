@@ -5,7 +5,7 @@
     Knows nothing about which game it is used in. The parent decides which text to show.
 
     Usage in the parent example:
-        import { countryGameDescription } from '@/content/tasksTexts';
+        import { countryGameDescription } from '@/data/tasksTexts';
 
         const showDescription = ref(true);
 
@@ -25,7 +25,7 @@
 // Bring in the Vue tools we use: computed (derived value), onMounted (runs on appear) and ref (holds the dialog)
 import { computed, onMounted, ref } from 'vue';
 import { TtsButton, StartButton } from '@/components/buttons';
-import type { TaskDescription } from '@/content/tasksTexts';
+import type { TaskDescription } from '@/data/tasksTexts';
 
 // Required prop: the parent must pass a complete TaskDescription
 const props = defineProps<{
