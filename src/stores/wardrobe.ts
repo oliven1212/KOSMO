@@ -1,6 +1,7 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import { useWalletStore } from './wallet';
+import { useAchievementStore } from './achievements';
 
 // Kategorier med ting man kan købe (ét stykke per kategori)
 export type ItemCategory = 'hair' | 'clothes' | 'accessories';
@@ -35,6 +36,7 @@ const layerOrder: ItemCategory[] = ['hair', 'clothes', 'accessories'];
 export const useWardrobeStore = defineStore('wardrobe', () => {
 
     const walletStore = useWalletStore();
+    const achievementStore = useAchievementStore();
 
     const catalog: WardrobeItem[] = [
         { id: 'BlueOutfit', price: 100, category: 'clothes' },
@@ -107,8 +109,12 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
             return false;
         }
 
+        // Gemmes før owned ændres, ellers er unOwnedTryingOn tom bagefter
+        const bought = unOwnedTryingOn.value.map(item => item.id);
+
         walletStore.subtract(unOwnedPrice.value);
-        owned.value.push(...unOwnedTryingOn.value.map(item => item.id));
+        owned.value.push(...bought);
+        achievementStore.addProgress('collector', bought.length);
 
         return true;
     }
@@ -116,6 +122,11 @@ export const useWardrobeStore = defineStore('wardrobe', () => {
     function saveTryOn(): void {
         if (!canSave.value) {
             return;
+        }
+
+        // Sammenlignes før equipped overskrives
+        if (tryingOn.value.skin !== equipped.value.skin) {
+            achievementStore.unlock('stylist');
         }
 
         equipped.value = copyOutfit(tryingOn.value);

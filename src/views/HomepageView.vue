@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { BodyPanel, BuyBox, ListContainer, TabBar } from '@/components';
+import { AchievementCard, BodyPanel, BuyBox, ListContainer, TabBar } from '@/components';
 import { AcceptButton, TryAgainButton } from '@/components/buttons';
 import { useRoute } from 'vue-router';
 import { useWardrobe } from '@/composables/useWardrobe';
+import { useAchievements } from '@/composables/useAchievements';
 
 import MapLayout from '@/layouts/MapLayout.vue';
 import MenuModal from '@/components/modals/MenuModal.vue';
@@ -13,6 +14,9 @@ const {
     activeTab, tabs, cards, unOwnedPrice, canSave, canAfford,
     select, saveAndClose, cancelTryOn, buyTryOn,
 } = useWardrobe();
+
+// Begge composables har 'cards', så præstationernes hedder achievementCards her
+const { cards: achievementCards, unlockedCount, total } = useAchievements();
 </script>
 
 <template>
@@ -45,11 +49,20 @@ const {
         </MenuModal>
 
         <MenuModal v-if="route.name === 'achievement'" title="Præstationer">
+            <p class="achievements__count">Du har {{ unlockedCount }} af {{ total }}.</p>
+
+            <ListContainer :columns="2" :min-item-width="260">
+                <AchievementCard
+                    v-for="card in achievementCards"
+                    :key="card.id"
+                    v-bind="card.props" />
+            </ListContainer>
         </MenuModal>
     </MapLayout>
 </template>
 
 <style scoped lang="scss">
+@use '@/assets/scss/abstracts/colors' as c;
 @use '@/assets/scss/abstracts/sizes' as s;
 
 // Midt i modalen, uafhængigt af knapperne til højre
@@ -69,5 +82,11 @@ const {
         max-width: none;
         flex-basis: 100%;
     }
+}
+
+.achievements__count {
+    margin: 0;
+    font-size: 32px;
+    color: c.$secondary;
 }
 </style>

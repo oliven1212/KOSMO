@@ -36,10 +36,12 @@ defineProps<{
 .menuModal {
     box-sizing: border-box;
     height: 100%; // samme højde som ProfileInfo
+    contain: size;   // indholdet må ikke gøre modalen højere, ellers skifter Garderobe og Præstationer størrelse. Den scroller indeni
     margin-right: 12vw;
 
     @media (max-width: s.$breakpointCompact) {
         margin-right: 16px;   // på tablet er der ikke plads at spilde
+        min-height: 70vh;     // på tablet er ProfileInfo lav, så modalen får selv mere plads
     }
 
     &__content {

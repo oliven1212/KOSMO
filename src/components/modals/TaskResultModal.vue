@@ -25,6 +25,7 @@
 // Bring in the Vue tools we use: computed (derived value), onMounted (runs on appear) and ref (holds the dialog)
 import { onMounted, ref } from 'vue';
 import { TtsButton, NextButton } from '@/components/buttons';
+import { useAchievementStore } from '@/stores/achievements';
 
 // Required prop: the parent must pass a complete TaskDescription
 const props = defineProps<{
@@ -43,6 +44,8 @@ const emit = defineEmits<{
 // Will hold the <dialog> element itself, null until it exists on the page
 const dialogRef = ref<HTMLDialogElement | null>(null);
 
+const achievementStore = useAchievementStore();
+
 const answerText = props.isCorrect ? 'Rigtigt!' : 'Forkert';
 
 // Title first, then the items, as one string for the read-aloud button
@@ -56,6 +59,11 @@ onMounted((): void => {
 
 // Runs when "Videre" is clicked
 function onClose(): void {
+    // A wrong answer means the explanation was read, which counts towards "Tålmodig"
+    if (!props.isCorrect) {
+        achievementStore.addProgress('patient');
+    }
+
     // Tell the parent: please remove me
     emit('close');
 }
