@@ -19,7 +19,7 @@ export default defineConfigWithVueTs(
     },
 
     // Lint kun src/: ignorér alt i roden undtagen src-mappen
-    globalIgnores(['*', '!src/', 'src/components/icons/**','src/router/**', '**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+    globalIgnores(['*', '!src/', 'src/components/icons/**', 'src/components/clothing/**', 'src/router/**', '**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
 
     ...pluginVue.configs['flat/essential'],
     // Type-checked variant is required by @typescript-eslint/no-misused-promises
