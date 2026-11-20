@@ -246,8 +246,11 @@ export function useCountryGame(options: CountryGameOptions = {}): CountryGame {
         if (correct) {
             correctCount.value += 1;
         }
-        // Colour only the clicked country (green or red), the right one is not revealed
-        highlights.value = { [chosen.code]: correct ? 'correct' : 'wrong' };
+        // Right: only the clicked country turns green.
+        // Wrong: the clicked country turns red, and the correct country turns green so the player can see it
+        highlights.value = correct
+            ? { [chosen.code]: 'correct' }
+            : { [chosen.code]: 'wrong', [goal.code]: 'correct' };
         // Show the result modal (this line was missing, and it also stops the close event from cancelling the choice)
         phase.value = 'result';
     }
