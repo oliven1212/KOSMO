@@ -1,4 +1,5 @@
 // components
+export { default as AchievementCard } from './AchievementCard.vue';
 export { default as BodyPanel } from './BodyPanel.vue';
 export { default as BuyBox } from './BuyBox.vue';
 export { default as CharacterDisplay } from './CharacterDisplay.vue';
