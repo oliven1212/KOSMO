@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
-import { achievements, type AchievementId } from '@/content/achievements';
+import { achievements, type AchievementId } from '@/data/achievements';
 
 export const useAchievementStore = defineStore('achievements', () => {
 

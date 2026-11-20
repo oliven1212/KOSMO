@@ -1,7 +1,7 @@
 import { computed, type ComputedRef } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useAchievementStore } from '@/stores/achievements';
-import { achievements, type AchievementId } from '@/content/achievements';
+import { achievements, type AchievementId } from '@/data/achievements';
 
 // Et kort i listen: id til :key + de props AchievementCard skal have
 export interface AchievementCardData {
