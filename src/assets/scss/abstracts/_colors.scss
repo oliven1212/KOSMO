@@ -1,0 +1,54 @@
+$primary: #61B87D;
+$secondary: #1A3040;
+$white: #FFFBF4;
+
+//Background colors
+$background: #3986B7;
+$backgroundIcecream: #9DD2EB;
+$backgroundLoading: #010047;
+$loadingBackground: #12278A;   // himlen på loading screen
+$loadingSpinner: #0AA0F5;      // den blå bue på hjelmen
+
+//Overlay colors
+$overlay: rgba(0, 0, 0, 0.28);
+
+///Button colors
+$wardrobeButton: #8496CD;
+$mapButton: #D4F5DF;   // zoom-knapperne på kortet i landespillet
+$achievementButton: #C1E7E4;
+$dangerButton: #E37F65;
+$readaloudButton: #EFBBD9;
+$ekstraButton: #E482BF;
+$shadowButton: #909DA2;
+
+//Modal colors
+$modalBackground: #FEFAF1;
+$modalStroke: #DCCFBC;
+$modalDark: #EBE4D6;
+$modalSelected: #E37F65;
+$modalNotice: #F1E2B5;   // gul boks, fx "Du prøver noget, du ikke ejer endnu"
+
+//Caracter colors
+$kosmoBackground: #abe1b680;
+$kosmoMint: #7DE0AA;
+$kosmoSky: #82D8EE;
+$kosmoPeach: #FFC3A1;
+$kosmoRose: #FFB1BD;
+$kosmoLemon: #E9E289;
+$kosmoAcid: #CFB9F0;
+$kosmoCheeks: #EF7D88;
+
+//Achievement colors
+$achievementUnlocked: #CEFBDD;
+$achievementTrophy: #EFC56A;
+$achievementLocked: #A2A6AE;
+
+// Kosmos hudfarver. Nøglerne skal matche SkinColor i stores/wardrobe.ts
+$skinColors: (
+    mint: $kosmoMint,
+    sky: $kosmoSky,
+    peach: $kosmoPeach,
+    rose: $kosmoRose,
+    lemon: $kosmoLemon,
+    lilac: $kosmoAcid,
+);
