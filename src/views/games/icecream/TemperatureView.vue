@@ -4,6 +4,7 @@ import ThermometerElement from '@/components/games/ThermometerElement.vue';
 import DropBox from '@/components/games/DropBox.vue';
 import DragElement from '@/components/games/DragElement.vue';
 import { HeaderElement, TaskDescriptionModal } from '@/components';
+import { ExitButton } from '@/components/buttons';
 import { waterPhasesGameDescription } from '@/data/tasksTexts';
 import LoadingLayout from '@/layouts/LoadingLayout.vue';
 
@@ -26,8 +27,10 @@ const waterPhases: string[] = ['Is', 'Damp', 'Vand'];
             @close="showDescription = false"
         />
         <div class="w--100 h--100 grid grid--gapcol-4 grid--gaprow-4 p--4 temperatureGame">
-            <!-- Task text across the top, spanning both columns -->
-            <div class="grid--col-span-2 grid--just-center w--75">
+            <!-- Top row across both columns: exit button on the left, task text in the middle -->
+            <div class="grid--col-span-2 topRow">
+                <!-- Asks "are you sure?" before going back to the map -->
+                <ExitButton class="topRow__exit" />
                 <HeaderElement>Placer disse tre faser af vand på termometeret ved den temperatur de hører til</HeaderElement>
             </div>
 
@@ -57,6 +60,20 @@ const waterPhases: string[] = ['Is', 'Damp', 'Vand'];
 </template>
 <style lang="scss" scoped>
 @use '@/assets/scss/abstracts/colors' as c;
+@use '@/assets/scss/abstracts/sizes' as s;
+
+// Exit button | header | empty column of the same width, so the header stays centred
+.topRow{
+    display: grid;
+    grid-template-columns: s.$topBarHeight 1fr s.$topBarHeight;
+    align-items: center;
+    gap: 16px;
+
+    &__exit{
+        width: s.$topBarHeight;
+        height: s.$topBarHeight;
+    }
+}
 
 .temperatureGame{
     position: absolute;
