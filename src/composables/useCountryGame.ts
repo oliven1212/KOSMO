@@ -1,10 +1,9 @@
 // Import the Vue helpers and the types we use in the returned object
 import { computed, ref, type ComputedRef, type Ref } from 'vue';
-// Import the stores that hold the player's coins and XP
-import { useWalletStore } from '@/stores/wallet';
-import { useXpStore } from '@/stores/xp';
-// Import the shared reward formula
-import { calculateReward } from '@/data/rewards';
+// Import the shared reward formula and payout
+import { calculateReward, giveReward } from '@/data/rewards';
+// Import the phases every minigame shares
+import type { GamePhase } from '@/data/types/gamePhase';
 
 // Default number of turns in one game; can be overridden through the options
 export const DEFAULT_TOTAL_TURNS = 10;
@@ -21,9 +20,6 @@ export interface Country {
 
 // How a country should be coloured on the map
 export type Highlight = 'selected' | 'correct' | 'wrong';
-
-// Where the game currently is
-export type GamePhase = 'loading' | 'playing' | 'confirming' | 'result' | 'finished';
 
 // Settings a game can be started with (more can be added later, like a region id)
 export interface CountryGameOptions {
@@ -135,10 +131,6 @@ function buildTargets(countries: Country[], turns: number): Country[] {
 export function useCountryGame(options: CountryGameOptions = {}): CountryGame {
     // Use the given number of turns, or the default
     const turnsPerGame = options.totalTurns ?? DEFAULT_TOTAL_TURNS;
-    // The store that holds the player's coins
-    const wallet = useWalletStore();
-    // The store that holds the player's XP
-    const xpStore = useXpStore();
 
     // Current phase of the game
     const phase = ref<GamePhase>('loading');
@@ -268,8 +260,7 @@ export function useCountryGame(options: CountryGameOptions = {}): CountryGame {
         // If that was the last turn, the game is over
         if (turnIndex.value + 1 >= totalTurns.value) {
             // Pay out the rewards, exactly once, because the phase guard above blocks a second call
-            wallet.add(coins.value);
-            xpStore.addXp(xp.value);
+            giveReward(reward.value);
             // Show the summary instead of a new turn
             phase.value = 'finished';
             return;

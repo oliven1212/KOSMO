@@ -1,9 +1,11 @@
 <script setup lang="ts">
+// boxId is sent with DragElement's dropped event, so the view knows which box was hit
+defineProps<{ boxId: string }>();
 </script>
 
 <template>
-    <!-- Placeholder box where a dragged element can be dropped (no logic yet) -->
-    <div class="dropBox">
+    <!-- Box where a dragged element can be dropped; DragElement finds it by data-drop-box -->
+    <div class="dropBox" :data-drop-box="boxId">
         <slot />
     </div>
 </template>
