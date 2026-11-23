@@ -22,7 +22,7 @@
 <script setup lang="ts">
 // Bring in the Vue tools we use: ref (holds a value), and two lifecycle hooks
 import { onMounted, ref } from 'vue';
-import TtsButton from '@/components/icons/Speaker.vue';
+import { AcceptButton, TryAgainButton, TtsButton } from '@/components/buttons';
 
 // Declare the data the PARENT must give us, here one string called text
 defineProps<{
@@ -65,24 +65,20 @@ function onConfirm(): void {
 <template>
     <!-- ref="dialogRef" connects this element to the dialogRef variable above -->
     <!-- @cancel.prevent stops the Esc key from closing it -->
-    <dialog ref="dialogRef" class="modal taskConfirmModal h-vh--25" @cancel.prevent>
+    <dialog ref="dialogRef" class="modal taskConfirmModal" @cancel.prevent>
         <!-- Show the text prop on screen -->
-        <p class="modal__text">
+        <p class="modal__title">
             {{ text }}
         </p>
 
-        <div class="flex flex--just-between h--66">
+        <div class="modal__actions">
             <TtsButton :text="text" />
             <div class="flex flex--gapcol-4">
-                <!-- Clicking calls onClose from the script -->
-                <button type="button" class="button button--round button--danger" @click="onClose">
-                    Prøv noget andet
-                </button>
+                <!-- Red button with icon: clicking calls onClose from the script -->
+                <TryAgainButton aria-label="Prøv noget andet" @click="onClose" />
 
-                <!-- Clicking calls onConfirm from the script -->
-                <button type="button" class="button button--round button--primary" @click="onConfirm">
-                    Bekræft
-                </button>
+                <!-- Green button with a check mark: clicking calls onConfirm from the script -->
+                <AcceptButton aria-label="Bekræft" @click="onConfirm" />
             </div>
         </div>
 

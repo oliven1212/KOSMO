@@ -70,13 +70,13 @@ function onClose(): void {
         </p>
 
         <!-- One <li> per item; the item text itself is the key (fine as long as no two items are identical) -->
-        <ul>
+        <ul class="modal__list">
             <li v-for="item in content.items" :key="item">
                 {{ item }}
             </li>
         </ul>
 
-        <div class="flex flex--just-between h--25">
+        <div class="modal__actions">
             <!-- spokenText is the title and items joined into one string -->
             <TtsButton :text="spokenText" />
             <!-- @click falls through to the <button> inside StartButton -->

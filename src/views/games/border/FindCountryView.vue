@@ -18,6 +18,7 @@ import { getCountryFact } from '@/data/countryFacts';
 import { countryGameDescription } from '@/data/tasksTexts';
 // Import the header and the four modals
 import HeaderElement from '@/components/HeaderElement.vue';
+import { ExitButton } from '@/components/buttons';
 import TaskDescriptionModal from '@/components/modals/TaskDescriptionModal.vue';
 import TaskConfirmationModal from '@/components/modals/TaskConfirmationModal.vue';
 import TaskResultModal from '@/components/modals/TaskResultModal.vue';
@@ -165,8 +166,8 @@ onMounted(() => {
     // Create the map without the default zoom buttons, because they would sit under the floating header
     const mapInstance = map('map', { maxBoundsViscosity: 1.0, zoomSnap: 0.25, zoomControl: false });
 
-    // Add the zoom buttons in the bottom right corner instead
-    control.zoom({ position: 'bottomright' }).addTo(mapInstance);
+    // Add the zoom buttons in the bottom left corner instead, as in the design (styled in the SCSS below)
+    control.zoom({ position: 'bottomleft', zoomInTitle: 'Zoom ind', zoomOutTitle: 'Zoom ud' }).addTo(mapInstance);
     // Remember the map so showRegion can use it
     gameMap = mapInstance;
 
@@ -247,8 +248,10 @@ onMounted(() => {
         <!-- The element Leaflet draws into, filling the whole screen -->
         <div id="map" class="game__map"></div>
 
-        <!-- Floating bar on top of the map with the header and the instructions button -->
+        <!-- Floating bar on top of the map with the exit button, the header and the instructions button -->
         <div class="game__top">
+            <!-- Asks "are you sure?" before going back to the map -->
+            <ExitButton class="game__exit" />
             <!-- The premade header; the text goes in its slot -->
             <HeaderElement class="game__header">{{ headerText }}</HeaderElement>
             <!-- Small button that reopens the instructions -->
@@ -293,6 +296,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 // Bring in the project's colour, size and z-index variables
+@use 'sass:color';
 @use '@/assets/scss/abstracts/colors' as *;
 @use '@/assets/scss/abstracts/sizes' as *;
 @use '@/assets/scss/abstracts/z-index' as *;
@@ -332,6 +336,13 @@ onMounted(() => {
 .game__header {
     flex: 1;
     pointer-events: auto;
+}
+
+// The exit button: round and as tall as the header (ExitButton makes itself clickable)
+.game__exit {
+    flex: none;
+    width: $topBarHeight;
+    height: $topBarHeight;
 }
 
 // The instructions button: as tall as the header, square, with the same frame style
@@ -387,5 +398,38 @@ onMounted(() => {
     fill: $dangerButton;
     stroke-width: 3;
     stroke-dasharray: 6 4;
+}
+
+// Leaflet's zoom buttons, restyled like the game's other buttons: big, green and with a pressed effect
+.game :deep(.leaflet-control-zoom) {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0 0 24px 24px;
+    border: none;
+    box-shadow: none;
+}
+
+.game :deep(.leaflet-control-zoom a) {
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    border: none;
+    border-radius: 16px;
+    background: $mapButton;
+    color: $secondary;
+    font-size: 32px;
+    box-shadow: 0 4px 0 color.scale($mapButton, $lightness: -25%);
+
+    // Tablets have no hover, so give a press effect instead
+    &:active {
+        transform: translateY(4px);
+        box-shadow: none;
+    }
+}
+
+// Leaflet greys out a button when you cannot zoom further
+.game :deep(.leaflet-control-zoom a.leaflet-disabled) {
+    opacity: 0.5;
 }
 </style>
