@@ -84,7 +84,7 @@ function onClose(): void {
         <p class="modal__text">
             {{ rewardLine }}
         </p>
-        <div class="flex flex--just-between h--25">
+        <div class="modal__actions">
             <TtsButton :text="spokenText" />
             <div class="flex flex--gapcol-5 ">
                 <WardrobeButton @click="onClose" />

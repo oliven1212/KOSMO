@@ -82,7 +82,7 @@ function onClose(): void {
             {{ fact }}
         </p>
 
-        <div class="flex flex--just-between h--25">
+        <div class="modal__actions">
             <!-- spokenText is the title and items joined into one string -->
             <TtsButton :text="spokenText" />
             <!-- @click falls through to the <button> inside StartButton -->
