@@ -7,8 +7,8 @@ import { HeaderElement, TaskDescriptionModal } from '@/components';
 import { waterPhasesGameDescription } from '@/data/tasksTexts';
 import LoadingLayout from '@/layouts/LoadingLayout.vue';
 
-// Show the task description modal when the game starts
-const showDescription = ref(true);
+// Show the task description modal when the loading screen is done (LoadingLayout sends done)
+const showDescription = ref(false);
 
 // The temperature shown on each thermometer, left to right
 const temperatures: number[] = [45, -10, 130];
@@ -19,7 +19,7 @@ const waterPhases: string[] = ['Is', 'Damp', 'Vand'];
 
 <template>
     <!-- Loading screen med fun facts, før spillet starter -->
-    <LoadingLayout>
+    <LoadingLayout @done="showDescription = true">
         <TaskDescriptionModal
             v-if="showDescription"
             :content="waterPhasesGameDescription"

@@ -11,6 +11,11 @@ const props = withDefaults(defineProps<{
     factInterval: 4000,
 });
 
+// Sendes, når loading screen forsvinder. Spillet kan fx åbne sin beskrivelse her
+const emit = defineEmits<{
+    done: [];
+}>();
+
 const loading = ref<boolean>(true);
 
 // Start et tilfældigt sted, så man ikke altid ser det samme fact først
@@ -28,6 +33,7 @@ onMounted((): void => {
     loadingTimer = setTimeout((): void => {
         loading.value = false;
         clearInterval(factTimer);
+        emit('done');
     }, props.duration);
 });
 
@@ -39,6 +45,16 @@ onBeforeUnmount((): void => {
 </script>
 
 <template>
+    <!--
+        Spillet bygges med det samme bagved, så fx kortet kan hente sine data, mens man læser.
+        inert gør, at man ikke kan klikke eller tabbe ind i spillet, før loading er færdig.
+        display: contents, så den ekstra div ikke ændrer spillets layout
+    -->
+    <div class="loadingLayout__game" :inert="loading">
+        <slot />
+    </div>
+
+    <!-- Loading screen ligger ovenpå spillet, indtil tiden er gået -->
     <div v-if="loading" class="loadingLayout">
         <LoadingScene class="loadingLayout__scene">
             <!-- aria-live, så en skærmlæser læser det nye fact op, når det skifter -->
@@ -48,21 +64,24 @@ onBeforeUnmount((): void => {
             </div>
         </LoadingScene>
     </div>
-
-    <!-- Spillet vises først, når loading er færdig (v-if, så fx beskrivelsen åbner først der) -->
-    <slot v-else />
 </template>
 
 <style lang="scss" scoped>
 @use '@/assets/scss/abstracts/colors' as c;
+@use '@/assets/scss/abstracts/z-index' as z;
 
 .loadingLayout {
     position: fixed;
     inset: 0;
+    z-index: z.$z-overlay;   // over spillet og dets kort
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: c.$loadingBackground;   // samme himmel, så kanterne ikke ses, når skærmen har et andet format
+
+    &__game {
+        display: contents;
+    }
 
     &__scene {
         width: 100%;

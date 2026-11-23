@@ -19,6 +19,8 @@ import { countryGameDescription } from '@/data/tasksTexts';
 // Import the header and the four modals
 import HeaderElement from '@/components/HeaderElement.vue';
 import { ExitButton } from '@/components/buttons';
+// Import the loading screen, which covers the game while the map data loads
+import LoadingLayout from '@/layouts/LoadingLayout.vue';
 import TaskDescriptionModal from '@/components/modals/TaskDescriptionModal.vue';
 import TaskConfirmationModal from '@/components/modals/TaskConfirmationModal.vue';
 import TaskResultModal from '@/components/modals/TaskResultModal.vue';
@@ -30,8 +32,8 @@ const {
     highlights, coins, xp, startGame, selectCountry, cancelSelection, confirmSelection, nextTurn,
 } = useCountryGame();
 
-// Whether the task description modal is open (it opens at the start)
-const showDescription = ref(true);
+// Whether the task description modal is open (it opens when the loading screen is done)
+const showDescription = ref(false);
 // Whether the final summary modal is open
 const showQuizResult = ref(false);
 // The Leaflet map, created in onMounted (null until then)
@@ -243,55 +245,58 @@ onMounted(() => {
 </script>
 
 <template>
-    <!-- Wrapper pinned to the window: the map fills it and the header floats on top -->
-    <div class="game">
-        <!-- The element Leaflet draws into, filling the whole screen -->
-        <div id="map" class="game__map"></div>
+    <!-- Loading screen with fun facts on top; the map is built and loads its countries underneath -->
+    <LoadingLayout @done="showDescription = true">
+        <!-- Wrapper pinned to the window: the map fills it and the header floats on top -->
+        <div class="game">
+            <!-- The element Leaflet draws into, filling the whole screen -->
+            <div id="map" class="game__map"></div>
 
-        <!-- Floating bar on top of the map with the exit button, the header and the instructions button -->
-        <div class="game__top">
-            <!-- Asks "are you sure?" before going back to the map -->
-            <ExitButton class="game__exit" />
-            <!-- The premade header; the text goes in its slot -->
-            <HeaderElement class="game__header">{{ headerText }}</HeaderElement>
-            <!-- Small button that reopens the instructions -->
-            <button type="button" class="game__help" aria-label="Vis opgaven" @click="showDescription = true">
-                ?
-            </button>
-        </div>
+            <!-- Floating bar on top of the map with the exit button, the header and the instructions button -->
+            <div class="game__top">
+                <!-- Asks "are you sure?" before going back to the map -->
+                <ExitButton class="game__exit" />
+                <!-- The premade header; the text goes in its slot -->
+                <HeaderElement class="game__header">{{ headerText }}</HeaderElement>
+                <!-- Small button that reopens the instructions -->
+                <button type="button" class="game__help" aria-label="Vis opgaven" @click="showDescription = true">
+                    ?
+                </button>
+            </div>
 
-    <!-- Instructions: open at the start, and again from the button above -->
-    <TaskDescriptionModal
-      v-if="showDescription"
-      :content="countryGameDescription"
-      @close="showDescription = false"
-    />
+        <!-- Instructions: open at the start, and again from the button above -->
+        <TaskDescriptionModal
+          v-if="showDescription"
+          :content="countryGameDescription"
+          @close="showDescription = false"
+        />
 
-    <!-- Confirmation: says nothing about the country, the neutral highlight on the map is the only hint -->
-    <TaskConfirmationModal
-      v-if="phase === 'confirming'"
-      text="Er du sikker på dit valg?"
-      @confirm="confirmSelection"
-      @close="cancelSelection"
-    />
+        <!-- Confirmation: says nothing about the country, the neutral highlight on the map is the only hint -->
+        <TaskConfirmationModal
+          v-if="phase === 'confirming'"
+          text="Er du sikker på dit valg?"
+          @confirm="confirmSelection"
+          @close="cancelSelection"
+        />
 
-    <!-- Result of one turn; the answer and the fact are set before it appears -->
-    <TaskResultModal
-      v-if="phase === 'result'"
-      :is-correct="lastAnswerCorrect"
-      :fact="resultFact"
-      @close="nextTurn"
-    />
+        <!-- Result of one turn; the answer and the fact are set before it appears -->
+        <TaskResultModal
+          v-if="phase === 'result'"
+          :is-correct="lastAnswerCorrect"
+          :fact="resultFact"
+          @close="nextTurn"
+        />
 
-    <!-- Summary after the last turn -->
-    <QuizResultModal
-      v-if="showQuizResult"
-      :max-tasks="totalTurns"
-      :correct-tasks="correctCount"
-      :coins-gotten="coins"
-      :xp-gotten="xp"
-    />
-  </div>
+        <!-- Summary after the last turn -->
+        <QuizResultModal
+          v-if="showQuizResult"
+          :max-tasks="totalTurns"
+          :correct-tasks="correctCount"
+          :coins-gotten="coins"
+          :xp-gotten="xp"
+        />
+      </div>
+    </LoadingLayout>
 </template>
 
 <style scoped lang="scss">
