@@ -34,6 +34,31 @@ const router = createRouter({
             component: () => import('@/views/HomepageView.vue')
 
         },
+        {
+            path: '/teacher',
+            children: [
+                {
+                    path: '',
+                    name: 'teacher-login',
+                    component: () => import('@/views/teacher/LoginView.vue'),
+                },
+                {
+                    path: 'menu',
+                    name: 'teacher-menu',
+                    component: () => import('@/views/teacher/MenuView.vue'),
+                },
+                {
+                    path: 'class-data',
+                    name: 'teacher-class-data',
+                    component: () => import('@/views/teacher/ClassDataView.vue'),
+                },
+                {
+                    path: 'student-data',
+                    name: 'teacher-student-data',
+                    component: () => import('@/views/teacher/StudentDataView.vue'),
+                },
+            ],
+        },
     ],
 });
 
