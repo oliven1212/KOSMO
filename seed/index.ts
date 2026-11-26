@@ -2,7 +2,8 @@
 // Kræver serviceAccountKey.json i projektets rod (hentes i Firebase Console, og lægges i .gitignore)
 // Der bruges ikke Auth: users får den fulde e-mail som dokument-ID
 import { readFileSync } from "fs"; // bruges til at læse nøglefilen
-import { initializeApp, cert, ServiceAccount } from "firebase-admin/app"; // start Admin SDK
+import { initializeApp, cert } from "firebase-admin/app"; // start Admin SDK
+import type { ServiceAccount } from "firebase-admin/app"; // start Admin SDK
 import { getFirestore } from "firebase-admin/firestore"; // Firestore
 import { schools } from "./data/schools"; // skoler
 import { classrooms } from "./data/classrooms"; // klasser
