@@ -1,3 +1,7 @@
+// Import the stores that hold the player's coins and XP
+import { useWalletStore } from '@/stores/wallet';
+import { useXpStore } from '@/stores/xp';
+
 // Coins for a perfect game; the real reward is scaled by the share of correct answers
 export const REWARD_MONEY = 100;
 // XP for a perfect game; scaled in the same way
@@ -22,4 +26,11 @@ export function calculateReward(correct: number, total: number): Reward {
     
     // Scale both rewards by that share and round to whole numbers
     return { coins: Math.round(REWARD_MONEY * share), xp: Math.round(REWARD_XP * share) };
+}
+
+// Pay a reward out to the player's wallet and XP, so every game pays out the same way
+// (call it from a component or composable, because the stores need the app to be running)
+export function giveReward(reward: Reward): void {
+    useWalletStore().add(reward.coins);
+    useXpStore().addXp(reward.xp);
 }

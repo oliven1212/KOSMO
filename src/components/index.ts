@@ -13,6 +13,8 @@ export { default as XPBar } from './XPBar.vue';
 // add a new line here each time you create a new editor component (alphabetical)
 
 // games
+export { default as DragElement } from './games/DragElement.vue';
+export { default as DropBox } from './games/DropBox.vue';
 export { default as ThermometerElement } from './games/ThermometerElement.vue';
 // add a new line here each time you create a new editor component (alphabetical)
 
