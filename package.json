@@ -23,6 +23,7 @@
     "seed": "npx tsx seed/index.ts"
   },
   "dependencies": {
+    "firebase": "^13.4.0",
     "firebase-admin": "^14.5.1",
     "leaflet": "^1.9.4",
     "pinia": "^4.0.3",
