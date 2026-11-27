@@ -43,7 +43,7 @@ const router = createRouter({
                     component: () => import('@/views/teacher/LoginView.vue'),
                 },
                 {
-                    path: '',
+                    path: 'home',
                     name: 'teacher-home',
                     component: () => import('@/views/teacher/HomeView.vue'),
                 },

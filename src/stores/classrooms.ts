@@ -2,15 +2,41 @@ import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import { db } from '@/config/firebase';
 import { collection, getDocs, query, where, documentId } from 'firebase/firestore';
+import { useSchoolStore } from '@/stores/schools';
 import type { Classroom } from '@/types/databaseTypes';
 
+export interface ClassroomWithSchool extends Classroom {
+    schoolName: string;
+}
+
 export const useClassroomStore = defineStore('classrooms', () => {
+
+    const schoolStore = useSchoolStore();
 
     const classrooms = ref<Classroom[]>([]);
     const isLoading = ref(false);
 
-    const activeClassrooms = computed(() => classrooms.value.filter((c) => c.isActive));
-    const inactiveClassrooms = computed(() => classrooms.value.filter((c) => !c.isActive));
+    // Classrooms med skolens navn lagt på (opdaterer sig selv når skolerne er hentet)
+    const classroomsWithSchool = computed((): ClassroomWithSchool[] =>
+        // Går igennem hver classroom
+        classrooms.value.map((c) => ({
+        // Beholder alle classroom-felterne
+            ...c,
+            // Slår skolens navn op via schoolId, tom streng hvis skolen ikke er hentet endnu
+            schoolName: schoolStore.schools[c.schoolId]?.name ?? '',
+        })),
+    );
+
+    // Aktive classrooms, nu baseret på listen med skolenavn
+    const activeClassrooms = computed((): ClassroomWithSchool[] =>
+        // Beholder dem hvor isActive er true
+        classroomsWithSchool.value.filter((c) => c.isActive),
+    );
+    // Inaktive classrooms, nu baseret på listen med skolenavn
+    const inactiveClassrooms = computed((): ClassroomWithSchool[] =>
+        // Beholder dem hvor isActive er false
+        classroomsWithSchool.value.filter((c) => !c.isActive),
+    );
 
 
     // Henter brugere ud fra et felt, fx alle med en bestemt rolle
@@ -50,6 +76,9 @@ export const useClassroomStore = defineStore('classrooms', () => {
                 // Mapper hvert dokument til et classroom-objekt
                 snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Classroom),
             );
+
+            await schoolStore.fetchSchoolsByIds(classrooms.value.map((c) => c.schoolId));
+
         } finally {
             // Slår loading fra igen
             isLoading.value = false;
@@ -57,5 +86,5 @@ export const useClassroomStore = defineStore('classrooms', () => {
     }
 
 
-    return { classrooms, isLoading, activeClassrooms, inactiveClassrooms, fetchClassrooms };
+    return { classrooms, isLoading, classroomsWithSchool , activeClassrooms, inactiveClassrooms, fetchClassrooms };
 });
