@@ -54,6 +54,10 @@ defineExpose({ open });
                     class="teacherLoginModal__input" />
             </label>
 
+            <p v-if="teacherAuthStore.loginError" class="m--0 teacherLoginModal__error">
+                {{ teacherAuthStore.loginError }}
+            </p>
+
             <div class="flex flex--just-end flex--gap-3">
                 <button
                     type="button"
@@ -86,6 +90,10 @@ defineExpose({ open });
 
     &__cancel {
         background-color: c.$modalDark;
+    }
+
+    &__error {
+        color: c.$dangerButton;
     }
 }
 </style>
