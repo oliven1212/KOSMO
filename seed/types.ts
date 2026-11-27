@@ -49,10 +49,11 @@ export interface User {
   id: string; // dokument-ID = Auth uid
   personalId: string; // reference til personalData (= e-mailen)
   role: Role; // lærer eller elev
+  classroomIds: string[]; // copied from personalData when seeding (teachers can have more than one)
   coins?: number; // mønter (kun elever)
   xp?: number; // erfaringspoint (kun elever)
   unlockedAchievementIds?: string[]; // oplåste achievements (kun elever)
   kosmo?: Kosmo; // indlejret map (kun elever har en kosmo, lærere har ingen)
 }
 
-export type UserSeed = Omit<User, 'id'> & { id?: string }; // id mangler for lærere, så slås uid op i Auth
+export type UserSeed = Omit<User, 'id' | 'classroomIds'>; // id comes from Auth and classroomIds from personalData when seeding
