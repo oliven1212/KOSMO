@@ -2,7 +2,7 @@
 // Dokument-ID = personens fulde e-mail (samme som personalData). Der er ikke oprettet noget i Auth endnu
 // Lærere har kun personalId og role. Elever har også coins, xp, achievements og kosmo
 // Elever der ikke har købt tøj har standardoutfittet (gul hoodie, uden pris) på. Det tæller ikke som oplåst/købt
-import type { User } from "../types"; // importér typen
+import type { User } from '@/types/databaseTypes'; // importér typen
 
 export const users: User[] = [
   // LÆRERE

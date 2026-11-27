@@ -34,6 +34,18 @@ const router = createRouter({
             component: () => import('@/views/HomepageView.vue')
 
         },
+        {
+            path: '/teacher',
+            name: 'teacherLogin',
+            component: () => import('@/views/teacher/HomeView.vue'),
+            children: [
+                {
+                    path: '/menuview/:id',
+                    name: 'menuView',
+                    component: () => import('@/views/teacher/MenuView.vue'),
+                }
+            ],
+        },
     ],
 });
 

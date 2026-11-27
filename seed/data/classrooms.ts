@@ -1,6 +1,6 @@
 // data/classrooms.ts – klasser fra 3. til 6. på to skoler (statiske data)
 // isActive = true betyder, at en lærer har oprettet klassen i appen, så elevernes users findes
-import type { Classroom } from "../types"; // importér typen
+import type { Classroom } from '@/types/databaseTypes'; // importér typen
 
 export const classrooms: Classroom[] = [
   // Søndermarkskolen (A/B/C)

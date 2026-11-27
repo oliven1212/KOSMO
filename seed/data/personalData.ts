@@ -1,6 +1,6 @@
 // data/personalData.ts – lærere og elever, 10 elever pr. klasse (statiske data)
 // Dokument-ID = fuld e-mail. Format: 2 bogstaver fra fornavn + 2 fra efternavn + 5 tal @ skolens navn.test.dk
-import type { PersonalData } from "../types"; // importér typen
+import type { PersonalData } from '@/types/databaseTypes'; // importér typen
 
 export const personalData: PersonalData[] = [
   // LÆRERE (har flere klasser)

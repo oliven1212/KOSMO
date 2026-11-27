@@ -1,5 +1,5 @@
 // data/schools.ts – to skoler
-import type { School } from '../types'; // importér typen
+import type { School } from '@/types/databaseTypes'; // importér typen
 
 export const schools: School[] = [
     { id: 'school_sondermark', name: 'Søndermarkskolen' }, // bruger klassenavne med A/B/C

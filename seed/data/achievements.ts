@@ -1,6 +1,6 @@
 // data/achievements.ts – kopi af jeres eksisterende datafil, med id som dokument-ID
 // TODO: "condition" er endnu ikke udfyldt, da betingelserne ikke er fundet i koden. Tilføj dem her, når de er klar
-import type { Achievement } from '../types'; // importér typen
+import type { Achievement } from '@/types/databaseTypes'; // importér typen
 
 export const achievements: Achievement[] = [
     { id: 'firstLanding', title: 'Første landing', description: 'Gennemfør din første aktivitet' },

@@ -2,7 +2,7 @@
 // Tøj er taget fra jeres rigtige garderobe. Hår og ting er opfundet dummydata (10 stk. hver)
 // Krop (ansigt og hudfarver) er IKKE med: det ligger som standard i koden
 // Alle svgName-værdier er GÆT på filnavne: ret dem til jeres rigtige filer
-import type { KosmoCustomization } from '../types'; // importér typen
+import type { KosmoCustomization } from '@/types/databaseTypes'; // importér typen
 
 // TØJ (svg, slottet hedder "clothing")
 const clothing: KosmoCustomization[] = [
