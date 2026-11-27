@@ -1,7 +1,7 @@
 // types.ts – interfaces til alle dokumenter i Firestore
 // Alle interfaces har et "id" i seed-filerne. Det bliver dokument-ID'et og gemmes IKKE som felt i dokumentet.
+import type { User } from '../src/types'; // User, Role and Kosmo are global, the app uses them too
 
-export type Role = 'teacher' | 'student'; // de to roller i appen
 export type Category = 'hair' | 'clothing' | 'items'; // faner i garderoben der hentes fra databasen (krop ligger i koden)
 
 export interface School {
@@ -36,24 +36,6 @@ export interface KosmoCustomization {
   category: Category; // hovedkategori = fane i garderoben (og slot-navn i equippedClothing)
   svgName?: string; // SVG-fil der tegnes
   price?: number; // pris i mønter
-}
-
-export interface Kosmo {
-  kosmoName: string; // kosmos navn
-  skinColor: string; // valgt hudfarve som nøgle fra koden (fx "mint"). Fjern feltet, hvis det gemmes et andet sted
-  equippedClothing: Record<string, string>; // slot (= category) -> kosmoCustomization-ID
-  unlockedClothingIds: string[]; // alt kosmo har låst op
-}
-
-export interface User {
-  id: string; // dokument-ID = Auth uid
-  personalId: string; // reference til personalData (= e-mailen)
-  role: Role; // lærer eller elev
-  classroomIds: string[]; // copied from personalData when seeding (teachers can have more than one)
-  coins?: number; // mønter (kun elever)
-  xp?: number; // erfaringspoint (kun elever)
-  unlockedAchievementIds?: string[]; // oplåste achievements (kun elever)
-  kosmo?: Kosmo; // indlejret map (kun elever har en kosmo, lærere har ingen)
 }
 
 export type UserSeed = Omit<User, 'id' | 'classroomIds'>; // id comes from Auth and classroomIds from personalData when seeding

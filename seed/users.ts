@@ -2,7 +2,7 @@
 import { getAuth } from 'firebase-admin/auth';
 import { seedAuth } from './auth';
 import { personalData } from './data/personalData';
-import type { User } from './types';
+import type { User } from '../src/types';
 
 // Resets Auth and returns every user with its Auth uid as id and its classroomIds from personalData
 export async function seedUsers(): Promise<User[]> {
