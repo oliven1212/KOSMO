@@ -1,16 +1,8 @@
-// auth.ts – deletes ALL Firebase Auth users, then creates one for every email in users
-// Used by seedUsers in users.ts. The password for every user is the part of the email before the @
+// auth.ts – Firebase Auth helpers for the personalData seeder
 import type { Auth } from 'firebase-admin/auth';
-import { users } from './data/users';
-import type { UserSeed } from './types';
-
-// Returns the text before the @, used as the password
-function passwordFrom(email: string): string {
-    return email.split('@')[0] ?? '';
-}
 
 // Deletes every Auth user in the project. Returns how many were deleted
-async function wipeAuthUsers(auth: Auth): Promise<number> {
+export async function wipeAuthUsers(auth: Auth): Promise<number> {
     const uids: string[] = [];
     let pageToken: string | undefined = undefined;
 
@@ -32,20 +24,9 @@ async function wipeAuthUsers(auth: Auth): Promise<number> {
     return uids.length;
 }
 
-// Wipes all Auth users, creates one per user, and returns the users with their Auth uid as id
-export async function seedAuth(auth: Auth): Promise<(UserSeed & { id: string })[]> {
-    const deleted = await wipeAuthUsers(auth);
+// Creates an Auth user and returns its uid
+export async function createAuthUser(auth: Auth, email: string, password: string): Promise<string> {
+    const { uid } = await auth.createUser({ email, password });
 
-    console.log(`✔ auth: ${deleted} gamle brugere slettet`);
-
-    const created: (UserSeed & { id: string })[] = [];
-
-    for (const user of users) {
-        const { uid } = await auth.createUser({ email: user.personalId, password: passwordFrom(user.personalId) });
-
-        created.push({ id: uid, ...user });
-    }
-    console.log(`✔ auth: ${created.length} brugere oprettet`);
-
-    return created;
+    return uid;
 }

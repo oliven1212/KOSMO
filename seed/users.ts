@@ -1,23 +1,20 @@
-// users.ts – builds the users documents. Auth and users depend on each other, so this always resets Auth first
-import { getAuth } from 'firebase-admin/auth';
-import { seedAuth } from './auth';
+// users.ts – builds the users documents from the users data and the matching personalData
+import { emailFor } from './email';
 import { personalData } from './data/personalData';
-import type { User } from '../src/types';
+import { users } from './data/users';
+import type { User } from '@/types/databaseTypes';
 
-// Resets Auth and returns every user with its Auth uid as id and its classroomIds from personalData
-export async function seedUsers(): Promise<User[]> {
-    const authUsers = await seedAuth(getAuth());
-
-    return authUsers.map((user): User => {
+// Returns every user with their username as id, their e-mail and their classroomIds from personalData
+export function seedUsers(): User[] {
+    return users.map((user): User => {
         const person = personalData.find((p): boolean => {
-            return p.id === user.personalId;
+            return p.username === user.personalId;
         });
 
         if (!person) {
             throw new Error(`user ${user.personalId}: findes ikke i personalData`);
         }
 
-        // Classrooms are matched on the e-mail
-        return { ...user, classroomIds: person.classroomIds };
+        return { id: person.username, email: emailFor(person), classroomIds: person.classroomIds, ...user };
     });
 }

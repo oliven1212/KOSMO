@@ -1,25 +1,25 @@
 // data/users.ts – users for lærere og for elever i klasser med isActive = true (statiske data)
-// No document ID here: the seeder creates an Auth user for each personalId (e-mail) and uses its uid as document ID
+// No document ID here: the seeder uses personalId (the username) as document ID and adds email and classroomIds
 // Lærere har kun personalId og role. Elever har også coins, xp, achievements og kosmo
 // Elever der ikke har købt tøj har standardoutfittet (gul hoodie, uden pris) på. Det tæller ikke som oplåst/købt
 import type { User } from "@/types/databaseTypes"; // importér typen
 
-export const users: Omit<User, 'id' | 'classroomIds'>[] = [
+export const users: Omit<User, 'id' | 'email' | 'classroomIds'>[] = [
   // LÆRERE
-  { personalId: "mekj69255@sondermark.test.dk", role: "teacher" }, // Mette Kjær
-  { personalId: "soba54617@sondermark.test.dk", role: "teacher" }, // Søren Bak
-  { personalId: "liho91386@sondermark.test.dk", role: "teacher" }, // Lise Holm
-  { personalId: "peve88912@sondermark.test.dk", role: "teacher" }, // Peter Vester
-  { personalId: "cani68542@elmelund.test.dk", role: "teacher" }, // Camilla Nielsen
-  { personalId: "thda77877@elmelund.test.dk", role: "teacher" }, // Thomas Dalgaard
-  { personalId: "habr64562@elmelund.test.dk", role: "teacher" }, // Hanne Brandt
-  { personalId: "kejo79061@elmelund.test.dk", role: "teacher" }, // Kenny Jordsen
-  { personalId: "risa99971@elmelund.test.dk", role: "teacher" }, // Rikke Sandberg
+  { personalId: "mekj69255", role: "teacher" }, // Mette Kjær
+  { personalId: "soba54617", role: "teacher" }, // Søren Bak
+  { personalId: "liho91386", role: "teacher" }, // Lise Holm
+  { personalId: "peve88912", role: "teacher" }, // Peter Vester
+  { personalId: "cani68542", role: "teacher" }, // Camilla Nielsen
+  { personalId: "thda77877", role: "teacher" }, // Thomas Dalgaard
+  { personalId: "habr64562", role: "teacher" }, // Hanne Brandt
+  { personalId: "kejo79061", role: "teacher" }, // Kenny Jordsen
+  { personalId: "risa99971", role: "teacher" }, // Rikke Sandberg
 
   // ELEVER i 3.A, Søndermarkskolen
   // Emma Nielsen
   {
-    personalId: "emni74871@sondermark.test.dk",
+    personalId: "emni74871",
     role: "student",
     coins: 20,
     xp: 0,
@@ -33,7 +33,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Noah Sørensen
   {
-    personalId: "noso61371@sondermark.test.dk",
+    personalId: "noso61371",
     role: "student",
     coins: 57,
     xp: 53,
@@ -47,7 +47,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Ida Thomsen
   {
-    personalId: "idth42953@sondermark.test.dk",
+    personalId: "idth42953",
     role: "student",
     coins: 94,
     xp: 106,
@@ -61,7 +61,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // William Jakobsen
   {
-    personalId: "wija42357@sondermark.test.dk",
+    personalId: "wija42357",
     role: "student",
     coins: 131,
     xp: 159,
@@ -75,7 +75,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Freja Schmidt
   {
-    personalId: "frsc93845@sondermark.test.dk",
+    personalId: "frsc93845",
     role: "student",
     coins: 168,
     xp: 212,
@@ -89,7 +89,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Oscar Iversen
   {
-    personalId: "osiv63249@sondermark.test.dk",
+    personalId: "osiv63249",
     role: "student",
     coins: 205,
     xp: 265,
@@ -103,7 +103,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Alma Hansen
   {
-    personalId: "alha34221@sondermark.test.dk",
+    personalId: "alha34221",
     role: "student",
     coins: 42,
     xp: 18,
@@ -117,7 +117,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Lucas Jørgensen
   {
-    personalId: "lujo72739@sondermark.test.dk",
+    personalId: "lujo72739",
     role: "student",
     coins: 79,
     xp: 71,
@@ -131,7 +131,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Clara Poulsen
   {
-    personalId: "clpo25776@sondermark.test.dk",
+    personalId: "clpo25776",
     role: "student",
     coins: 116,
     xp: 124,
@@ -145,7 +145,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Victor Olesen
   {
-    personalId: "viol85648@sondermark.test.dk",
+    personalId: "viol85648",
     role: "student",
     coins: 153,
     xp: 177,
@@ -161,7 +161,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 5.X, Elmelundskolen
   // Olivia Mikkelsen
   {
-    personalId: "olmi84348@elmelund.test.dk",
+    personalId: "olmi84348",
     role: "student",
     coins: 190,
     xp: 230,
@@ -175,7 +175,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Malthe Eriksen
   {
-    personalId: "maer96383@elmelund.test.dk",
+    personalId: "maer96383",
     role: "student",
     coins: 27,
     xp: 283,
@@ -189,7 +189,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Josefine Jeppesen
   {
-    personalId: "joje69210@elmelund.test.dk",
+    personalId: "joje69210",
     role: "student",
     coins: 64,
     xp: 36,
@@ -203,7 +203,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Alfred Pedersen
   {
-    personalId: "alpe52551@elmelund.test.dk",
+    personalId: "alpe52551",
     role: "student",
     coins: 101,
     xp: 89,
@@ -217,7 +217,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Nora Petersen
   {
-    personalId: "nope45017@elmelund.test.dk",
+    personalId: "nope45017",
     role: "student",
     coins: 138,
     xp: 142,
@@ -231,7 +231,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Valdemar Johansen
   {
-    personalId: "vajo60487@elmelund.test.dk",
+    personalId: "vajo60487",
     role: "student",
     coins: 175,
     xp: 195,
@@ -245,7 +245,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Karla Frederiksen
   {
-    personalId: "kafr91668@elmelund.test.dk",
+    personalId: "kafr91668",
     role: "student",
     coins: 212,
     xp: 248,
@@ -259,7 +259,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Elias Simonsen
   {
-    personalId: "elsi19797@elmelund.test.dk",
+    personalId: "elsi19797",
     role: "student",
     coins: 49,
     xp: 1,
@@ -273,7 +273,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Asta Bruun
   {
-    personalId: "asbr24888@elmelund.test.dk",
+    personalId: "asbr24888",
     role: "student",
     coins: 86,
     xp: 54,
@@ -287,7 +287,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Mathias Christensen
   {
-    personalId: "mach94128@elmelund.test.dk",
+    personalId: "mach94128",
     role: "student",
     coins: 123,
     xp: 107,
@@ -303,7 +303,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 3.B, Søndermarkskolen
   // Ella Kristiansen
   {
-    personalId: "elkr37052@sondermark.test.dk",
+    personalId: "elkr37052",
     role: "student",
     coins: 98,
     xp: 115,
@@ -317,7 +317,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Emil Mogensen
   {
-    personalId: "emmo28556@sondermark.test.dk",
+    personalId: "emmo28556",
     role: "student",
     coins: 152,
     xp: 207,
@@ -331,7 +331,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Sofie Andersen
   {
-    personalId: "soan21075@sondermark.test.dk",
+    personalId: "soan21075",
     role: "student",
     coins: 217,
     xp: 54,
@@ -345,7 +345,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Magnus Madsen
   {
-    personalId: "mama92596@sondermark.test.dk",
+    personalId: "mama92596",
     role: "student",
     coins: 60,
     xp: 234,
@@ -359,7 +359,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Agnes Møller
   {
-    personalId: "agmo29477@sondermark.test.dk",
+    personalId: "agmo29477",
     role: "student",
     coins: 125,
     xp: 47,
@@ -373,7 +373,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Mikkel Laursen
   {
-    personalId: "mila65432@sondermark.test.dk",
+    personalId: "mila65432",
     role: "student",
     coins: 151,
     xp: 102,
@@ -387,7 +387,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Laura Clausen
   {
-    personalId: "lacl22005@sondermark.test.dk",
+    personalId: "lacl22005",
     role: "student",
     coins: 136,
     xp: 219,
@@ -401,7 +401,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Frederik Winther
   {
-    personalId: "frwi10616@sondermark.test.dk",
+    personalId: "frwi10616",
     role: "student",
     coins: 100,
     xp: 129,
@@ -415,7 +415,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Maja Larsen
   {
-    personalId: "mala94289@sondermark.test.dk",
+    personalId: "mala94289",
     role: "student",
     coins: 130,
     xp: 78,
@@ -429,7 +429,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Anton Olsen
   {
-    personalId: "anol87610@sondermark.test.dk",
+    personalId: "anol87610",
     role: "student",
     coins: 176,
     xp: 265,
@@ -445,7 +445,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 4.A, Søndermarkskolen
   // Olivia Knudsen
   {
-    personalId: "olkn61673@sondermark.test.dk",
+    personalId: "olkn61673",
     role: "student",
     coins: 49,
     xp: 138,
@@ -459,7 +459,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Malthe Lund
   {
-    personalId: "malu18017@sondermark.test.dk",
+    personalId: "malu18017",
     role: "student",
     coins: 48,
     xp: 133,
@@ -473,7 +473,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Josefine Andreasen
   {
-    personalId: "joan86689@sondermark.test.dk",
+    personalId: "joan86689",
     role: "student",
     coins: 29,
     xp: 14,
@@ -487,7 +487,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Alfred Jensen
   {
-    personalId: "alje58680@sondermark.test.dk",
+    personalId: "alje58680",
     role: "student",
     coins: 79,
     xp: 49,
@@ -501,7 +501,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Nora Rasmussen
   {
-    personalId: "nora40020@sondermark.test.dk",
+    personalId: "nora40020",
     role: "student",
     coins: 18,
     xp: 0,
@@ -515,7 +515,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Valdemar Christiansen
   {
-    personalId: "vach98242@sondermark.test.dk",
+    personalId: "vach98242",
     role: "student",
     coins: 91,
     xp: 282,
@@ -529,7 +529,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Karla Mikkelsen
   {
-    personalId: "kami63007@sondermark.test.dk",
+    personalId: "kami63007",
     role: "student",
     coins: 103,
     xp: 84,
@@ -543,7 +543,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Elias Eriksen
   {
-    personalId: "eler83434@sondermark.test.dk",
+    personalId: "eler83434",
     role: "student",
     coins: 95,
     xp: 122,
@@ -557,7 +557,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Asta Jeppesen
   {
-    personalId: "asje85794@sondermark.test.dk",
+    personalId: "asje85794",
     role: "student",
     coins: 35,
     xp: 223,
@@ -571,7 +571,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Mathias Pedersen
   {
-    personalId: "mape26736@sondermark.test.dk",
+    personalId: "mape26736",
     role: "student",
     coins: 131,
     xp: 32,
@@ -587,7 +587,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 4.B, Søndermarkskolen
   // Signe Petersen
   {
-    personalId: "sipe81805@sondermark.test.dk",
+    personalId: "sipe81805",
     role: "student",
     coins: 37,
     xp: 78,
@@ -601,7 +601,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // August Johansen
   {
-    personalId: "aujo26914@sondermark.test.dk",
+    personalId: "aujo26914",
     role: "student",
     coins: 183,
     xp: 250,
@@ -615,7 +615,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Liva Frederiksen
   {
-    personalId: "lifr10071@sondermark.test.dk",
+    personalId: "lifr10071",
     role: "student",
     coins: 105,
     xp: 247,
@@ -629,7 +629,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Rasmus Simonsen
   {
-    personalId: "rasi80618@sondermark.test.dk",
+    personalId: "rasi80618",
     role: "student",
     coins: 18,
     xp: 236,
@@ -643,7 +643,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Ellen Bruun
   {
-    personalId: "elbr73471@sondermark.test.dk",
+    personalId: "elbr73471",
     role: "student",
     coins: 65,
     xp: 149,
@@ -657,7 +657,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Jonas Christensen
   {
-    personalId: "joch34178@sondermark.test.dk",
+    personalId: "joch34178",
     role: "student",
     coins: 146,
     xp: 250,
@@ -671,7 +671,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Selma Kristensen
   {
-    personalId: "sekr60545@sondermark.test.dk",
+    personalId: "sekr60545",
     role: "student",
     coins: 147,
     xp: 106,
@@ -685,7 +685,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Villads Mortensen
   {
-    personalId: "vimo14359@sondermark.test.dk",
+    personalId: "vimo14359",
     role: "student",
     coins: 152,
     xp: 289,
@@ -699,7 +699,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Mille Henriksen
   {
-    personalId: "mihe20625@sondermark.test.dk",
+    personalId: "mihe20625",
     role: "student",
     coins: 49,
     xp: 225,
@@ -713,7 +713,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Tobias Svendsen
   {
-    personalId: "tosv49839@sondermark.test.dk",
+    personalId: "tosv49839",
     role: "student",
     coins: 50,
     xp: 188,
@@ -729,7 +729,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 5.A, Søndermarkskolen
   // Emma Jensen
   {
-    personalId: "emje38188@sondermark.test.dk",
+    personalId: "emje38188",
     role: "student",
     coins: 143,
     xp: 251,
@@ -743,7 +743,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Noah Rasmussen
   {
-    personalId: "nora76116@sondermark.test.dk",
+    personalId: "nora76116",
     role: "student",
     coins: 73,
     xp: 251,
@@ -757,7 +757,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Ida Christiansen
   {
-    personalId: "idch87824@sondermark.test.dk",
+    personalId: "idch87824",
     role: "student",
     coins: 22,
     xp: 142,
@@ -771,7 +771,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // William Mikkelsen
   {
-    personalId: "wimi40443@sondermark.test.dk",
+    personalId: "wimi40443",
     role: "student",
     coins: 133,
     xp: 96,
@@ -785,7 +785,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Freja Eriksen
   {
-    personalId: "frer26108@sondermark.test.dk",
+    personalId: "frer26108",
     role: "student",
     coins: 84,
     xp: 230,
@@ -799,7 +799,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Oscar Jeppesen
   {
-    personalId: "osje19591@sondermark.test.dk",
+    personalId: "osje19591",
     role: "student",
     coins: 163,
     xp: 241,
@@ -813,7 +813,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Alma Pedersen
   {
-    personalId: "alpe36260@sondermark.test.dk",
+    personalId: "alpe36260",
     role: "student",
     coins: 42,
     xp: 1,
@@ -827,7 +827,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Lucas Petersen
   {
-    personalId: "lupe27809@sondermark.test.dk",
+    personalId: "lupe27809",
     role: "student",
     coins: 80,
     xp: 19,
@@ -841,7 +841,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Clara Johansen
   {
-    personalId: "cljo48790@sondermark.test.dk",
+    personalId: "cljo48790",
     role: "student",
     coins: 163,
     xp: 222,
@@ -855,7 +855,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Victor Frederiksen
   {
-    personalId: "vifr94132@sondermark.test.dk",
+    personalId: "vifr94132",
     role: "student",
     coins: 83,
     xp: 193,
@@ -871,7 +871,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 5.C, Søndermarkskolen
   // Ella Simonsen
   {
-    personalId: "elsi13713@sondermark.test.dk",
+    personalId: "elsi13713",
     role: "student",
     coins: 217,
     xp: 17,
@@ -885,7 +885,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Emil Bruun
   {
-    personalId: "embr61896@sondermark.test.dk",
+    personalId: "embr61896",
     role: "student",
     coins: 70,
     xp: 25,
@@ -899,7 +899,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Sofie Christensen
   {
-    personalId: "soch14201@sondermark.test.dk",
+    personalId: "soch14201",
     role: "student",
     coins: 81,
     xp: 125,
@@ -913,7 +913,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Magnus Kristensen
   {
-    personalId: "makr59394@sondermark.test.dk",
+    personalId: "makr59394",
     role: "student",
     coins: 141,
     xp: 160,
@@ -927,7 +927,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Agnes Mortensen
   {
-    personalId: "agmo74666@sondermark.test.dk",
+    personalId: "agmo74666",
     role: "student",
     coins: 203,
     xp: 176,
@@ -941,7 +941,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Mikkel Henriksen
   {
-    personalId: "mihe18327@sondermark.test.dk",
+    personalId: "mihe18327",
     role: "student",
     coins: 87,
     xp: 176,
@@ -955,7 +955,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Laura Svendsen
   {
-    personalId: "lasv21150@sondermark.test.dk",
+    personalId: "lasv21150",
     role: "student",
     coins: 197,
     xp: 151,
@@ -969,7 +969,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Frederik Nielsen
   {
-    personalId: "frni84805@sondermark.test.dk",
+    personalId: "frni84805",
     role: "student",
     coins: 17,
     xp: 33,
@@ -983,7 +983,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Maja Sørensen
   {
-    personalId: "maso77322@sondermark.test.dk",
+    personalId: "maso77322",
     role: "student",
     coins: 71,
     xp: 219,
@@ -997,7 +997,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Anton Thomsen
   {
-    personalId: "anth17293@sondermark.test.dk",
+    personalId: "anth17293",
     role: "student",
     coins: 96,
     xp: 244,
@@ -1013,7 +1013,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 6.B, Søndermarkskolen
   // Olivia Jakobsen
   {
-    personalId: "olja23340@sondermark.test.dk",
+    personalId: "olja23340",
     role: "student",
     coins: 68,
     xp: 13,
@@ -1027,7 +1027,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Malthe Schmidt
   {
-    personalId: "masc91962@sondermark.test.dk",
+    personalId: "masc91962",
     role: "student",
     coins: 133,
     xp: 23,
@@ -1041,7 +1041,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Josefine Iversen
   {
-    personalId: "joiv86402@sondermark.test.dk",
+    personalId: "joiv86402",
     role: "student",
     coins: 167,
     xp: 273,
@@ -1055,7 +1055,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Alfred Hansen
   {
-    personalId: "alha11646@sondermark.test.dk",
+    personalId: "alha11646",
     role: "student",
     coins: 49,
     xp: 257,
@@ -1069,7 +1069,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Nora Jørgensen
   {
-    personalId: "nojo36143@sondermark.test.dk",
+    personalId: "nojo36143",
     role: "student",
     coins: 198,
     xp: 179,
@@ -1083,7 +1083,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Valdemar Poulsen
   {
-    personalId: "vapo65151@sondermark.test.dk",
+    personalId: "vapo65151",
     role: "student",
     coins: 112,
     xp: 260,
@@ -1097,7 +1097,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Karla Olesen
   {
-    personalId: "kaol82460@sondermark.test.dk",
+    personalId: "kaol82460",
     role: "student",
     coins: 54,
     xp: 66,
@@ -1111,7 +1111,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Elias Kristiansen
   {
-    personalId: "elkr10340@sondermark.test.dk",
+    personalId: "elkr10340",
     role: "student",
     coins: 28,
     xp: 13,
@@ -1125,7 +1125,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Asta Mogensen
   {
-    personalId: "asmo76104@sondermark.test.dk",
+    personalId: "asmo76104",
     role: "student",
     coins: 39,
     xp: 248,
@@ -1139,7 +1139,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Mathias Andersen
   {
-    personalId: "maan55676@sondermark.test.dk",
+    personalId: "maan55676",
     role: "student",
     coins: 122,
     xp: 124,
@@ -1155,7 +1155,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 3.X, Elmelundskolen
   // Signe Madsen
   {
-    personalId: "sima96221@elmelund.test.dk",
+    personalId: "sima96221",
     role: "student",
     coins: 138,
     xp: 59,
@@ -1169,7 +1169,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // August Møller
   {
-    personalId: "aumo77708@elmelund.test.dk",
+    personalId: "aumo77708",
     role: "student",
     coins: 99,
     xp: 120,
@@ -1183,7 +1183,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Liva Laursen
   {
-    personalId: "lila97713@elmelund.test.dk",
+    personalId: "lila97713",
     role: "student",
     coins: 84,
     xp: 290,
@@ -1197,7 +1197,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Rasmus Clausen
   {
-    personalId: "racl50989@elmelund.test.dk",
+    personalId: "racl50989",
     role: "student",
     coins: 109,
     xp: 54,
@@ -1211,7 +1211,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Ellen Winther
   {
-    personalId: "elwi85916@elmelund.test.dk",
+    personalId: "elwi85916",
     role: "student",
     coins: 95,
     xp: 255,
@@ -1225,7 +1225,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Jonas Larsen
   {
-    personalId: "jola99423@elmelund.test.dk",
+    personalId: "jola99423",
     role: "student",
     coins: 16,
     xp: 60,
@@ -1239,7 +1239,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Selma Olsen
   {
-    personalId: "seol95712@elmelund.test.dk",
+    personalId: "seol95712",
     role: "student",
     coins: 209,
     xp: 50,
@@ -1253,7 +1253,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Villads Knudsen
   {
-    personalId: "vikn92718@elmelund.test.dk",
+    personalId: "vikn92718",
     role: "student",
     coins: 194,
     xp: 137,
@@ -1267,7 +1267,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Mille Lund
   {
-    personalId: "milu95515@elmelund.test.dk",
+    personalId: "milu95515",
     role: "student",
     coins: 133,
     xp: 246,
@@ -1281,7 +1281,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Tobias Andreasen
   {
-    personalId: "toan18148@elmelund.test.dk",
+    personalId: "toan18148",
     role: "student",
     coins: 105,
     xp: 90,
@@ -1297,7 +1297,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 4.Y, Elmelundskolen
   // Emma Hansen
   {
-    personalId: "emha58138@elmelund.test.dk",
+    personalId: "emha58138",
     role: "student",
     coins: 46,
     xp: 125,
@@ -1311,7 +1311,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Noah Jørgensen
   {
-    personalId: "nojo84519@elmelund.test.dk",
+    personalId: "nojo84519",
     role: "student",
     coins: 170,
     xp: 100,
@@ -1325,7 +1325,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Ida Poulsen
   {
-    personalId: "idpo63305@elmelund.test.dk",
+    personalId: "idpo63305",
     role: "student",
     coins: 86,
     xp: 236,
@@ -1339,7 +1339,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // William Olesen
   {
-    personalId: "wiol18052@elmelund.test.dk",
+    personalId: "wiol18052",
     role: "student",
     coins: 71,
     xp: 47,
@@ -1353,7 +1353,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Freja Kristiansen
   {
-    personalId: "frkr20926@elmelund.test.dk",
+    personalId: "frkr20926",
     role: "student",
     coins: 220,
     xp: 278,
@@ -1367,7 +1367,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Oscar Mogensen
   {
-    personalId: "osmo51345@elmelund.test.dk",
+    personalId: "osmo51345",
     role: "student",
     coins: 120,
     xp: 102,
@@ -1381,7 +1381,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Alma Andersen
   {
-    personalId: "alan59860@elmelund.test.dk",
+    personalId: "alan59860",
     role: "student",
     coins: 42,
     xp: 117,
@@ -1395,7 +1395,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Lucas Madsen
   {
-    personalId: "luma83601@elmelund.test.dk",
+    personalId: "luma83601",
     role: "student",
     coins: 204,
     xp: 94,
@@ -1409,7 +1409,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Clara Møller
   {
-    personalId: "clmo56072@elmelund.test.dk",
+    personalId: "clmo56072",
     role: "student",
     coins: 143,
     xp: 106,
@@ -1423,7 +1423,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Victor Laursen
   {
-    personalId: "vila62558@elmelund.test.dk",
+    personalId: "vila62558",
     role: "student",
     coins: 24,
     xp: 17,
@@ -1439,7 +1439,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 4.Z, Elmelundskolen
   // Ella Clausen
   {
-    personalId: "elcl85080@elmelund.test.dk",
+    personalId: "elcl85080",
     role: "student",
     coins: 65,
     xp: 127,
@@ -1453,7 +1453,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Emil Winther
   {
-    personalId: "emwi93835@elmelund.test.dk",
+    personalId: "emwi93835",
     role: "student",
     coins: 146,
     xp: 218,
@@ -1467,7 +1467,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Sofie Larsen
   {
-    personalId: "sola70110@elmelund.test.dk",
+    personalId: "sola70110",
     role: "student",
     coins: 122,
     xp: 22,
@@ -1481,7 +1481,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Magnus Olsen
   {
-    personalId: "maol76837@elmelund.test.dk",
+    personalId: "maol76837",
     role: "student",
     coins: 186,
     xp: 111,
@@ -1495,7 +1495,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Agnes Knudsen
   {
-    personalId: "agkn35267@elmelund.test.dk",
+    personalId: "agkn35267",
     role: "student",
     coins: 172,
     xp: 21,
@@ -1509,7 +1509,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Mikkel Lund
   {
-    personalId: "milu59385@elmelund.test.dk",
+    personalId: "milu59385",
     role: "student",
     coins: 183,
     xp: 165,
@@ -1523,7 +1523,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Laura Andreasen
   {
-    personalId: "laan38415@elmelund.test.dk",
+    personalId: "laan38415",
     role: "student",
     coins: 205,
     xp: 43,
@@ -1537,7 +1537,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Frederik Jensen
   {
-    personalId: "frje19234@elmelund.test.dk",
+    personalId: "frje19234",
     role: "student",
     coins: 24,
     xp: 130,
@@ -1551,7 +1551,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Maja Rasmussen
   {
-    personalId: "mara69231@elmelund.test.dk",
+    personalId: "mara69231",
     role: "student",
     coins: 174,
     xp: 170,
@@ -1565,7 +1565,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Anton Christiansen
   {
-    personalId: "anch61408@elmelund.test.dk",
+    personalId: "anch61408",
     role: "student",
     coins: 198,
     xp: 280,
@@ -1581,7 +1581,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 5.Y, Elmelundskolen
   // Signe Kristensen
   {
-    personalId: "sikr83507@elmelund.test.dk",
+    personalId: "sikr83507",
     role: "student",
     coins: 74,
     xp: 65,
@@ -1595,7 +1595,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // August Mortensen
   {
-    personalId: "aumo15677@elmelund.test.dk",
+    personalId: "aumo15677",
     role: "student",
     coins: 68,
     xp: 243,
@@ -1609,7 +1609,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Liva Henriksen
   {
-    personalId: "lihe69114@elmelund.test.dk",
+    personalId: "lihe69114",
     role: "student",
     coins: 202,
     xp: 270,
@@ -1623,7 +1623,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Rasmus Svendsen
   {
-    personalId: "rasv16866@elmelund.test.dk",
+    personalId: "rasv16866",
     role: "student",
     coins: 172,
     xp: 272,
@@ -1637,7 +1637,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Ellen Nielsen
   {
-    personalId: "elni27161@elmelund.test.dk",
+    personalId: "elni27161",
     role: "student",
     coins: 188,
     xp: 248,
@@ -1651,7 +1651,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Jonas Sørensen
   {
-    personalId: "joso95676@elmelund.test.dk",
+    personalId: "joso95676",
     role: "student",
     coins: 134,
     xp: 177,
@@ -1665,7 +1665,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Selma Thomsen
   {
-    personalId: "seth33527@elmelund.test.dk",
+    personalId: "seth33527",
     role: "student",
     coins: 169,
     xp: 96,
@@ -1679,7 +1679,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Villads Jakobsen
   {
-    personalId: "vija26445@elmelund.test.dk",
+    personalId: "vija26445",
     role: "student",
     coins: 162,
     xp: 233,
@@ -1693,7 +1693,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Mille Schmidt
   {
-    personalId: "misc45528@elmelund.test.dk",
+    personalId: "misc45528",
     role: "student",
     coins: 35,
     xp: 102,
@@ -1707,7 +1707,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Tobias Iversen
   {
-    personalId: "toiv75319@elmelund.test.dk",
+    personalId: "toiv75319",
     role: "student",
     coins: 32,
     xp: 89,
@@ -1723,7 +1723,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 6.X, Elmelundskolen
   // Emma Pedersen
   {
-    personalId: "empe10427@elmelund.test.dk",
+    personalId: "empe10427",
     role: "student",
     coins: 90,
     xp: 162,
@@ -1737,7 +1737,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Noah Petersen
   {
-    personalId: "nope45033@elmelund.test.dk",
+    personalId: "nope45033",
     role: "student",
     coins: 195,
     xp: 96,
@@ -1751,7 +1751,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Ida Johansen
   {
-    personalId: "idjo64317@elmelund.test.dk",
+    personalId: "idjo64317",
     role: "student",
     coins: 213,
     xp: 16,
@@ -1765,7 +1765,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // William Frederiksen
   {
-    personalId: "wifr12160@elmelund.test.dk",
+    personalId: "wifr12160",
     role: "student",
     coins: 66,
     xp: 92,
@@ -1779,7 +1779,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Freja Simonsen
   {
-    personalId: "frsi16323@elmelund.test.dk",
+    personalId: "frsi16323",
     role: "student",
     coins: 158,
     xp: 69,
@@ -1793,7 +1793,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Oscar Bruun
   {
-    personalId: "osbr68027@elmelund.test.dk",
+    personalId: "osbr68027",
     role: "student",
     coins: 120,
     xp: 67,
@@ -1807,7 +1807,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Alma Christensen
   {
-    personalId: "alch57764@elmelund.test.dk",
+    personalId: "alch57764",
     role: "student",
     coins: 129,
     xp: 180,
@@ -1821,7 +1821,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Lucas Kristensen
   {
-    personalId: "lukr51487@elmelund.test.dk",
+    personalId: "lukr51487",
     role: "student",
     coins: 141,
     xp: 250,
@@ -1835,7 +1835,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Clara Mortensen
   {
-    personalId: "clmo49513@elmelund.test.dk",
+    personalId: "clmo49513",
     role: "student",
     coins: 149,
     xp: 192,
@@ -1849,7 +1849,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Victor Henriksen
   {
-    personalId: "vihe56689@elmelund.test.dk",
+    personalId: "vihe56689",
     role: "student",
     coins: 124,
     xp: 56,
@@ -1865,7 +1865,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   // ELEVER i 6.Z, Elmelundskolen
   // Ella Svendsen
   {
-    personalId: "elsv41097@elmelund.test.dk",
+    personalId: "elsv41097",
     role: "student",
     coins: 87,
     xp: 133,
@@ -1879,7 +1879,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Emil Nielsen
   {
-    personalId: "emni19894@elmelund.test.dk",
+    personalId: "emni19894",
     role: "student",
     coins: 145,
     xp: 113,
@@ -1893,7 +1893,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Sofie Sørensen
   {
-    personalId: "soso98337@elmelund.test.dk",
+    personalId: "soso98337",
     role: "student",
     coins: 17,
     xp: 55,
@@ -1907,7 +1907,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Magnus Thomsen
   {
-    personalId: "math71174@elmelund.test.dk",
+    personalId: "math71174",
     role: "student",
     coins: 211,
     xp: 102,
@@ -1921,7 +1921,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Agnes Jakobsen
   {
-    personalId: "agja31250@elmelund.test.dk",
+    personalId: "agja31250",
     role: "student",
     coins: 99,
     xp: 119,
@@ -1935,7 +1935,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Mikkel Schmidt
   {
-    personalId: "misc74710@elmelund.test.dk",
+    personalId: "misc74710",
     role: "student",
     coins: 92,
     xp: 220,
@@ -1949,7 +1949,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Laura Iversen
   {
-    personalId: "laiv63620@elmelund.test.dk",
+    personalId: "laiv63620",
     role: "student",
     coins: 112,
     xp: 237,
@@ -1963,7 +1963,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Frederik Hansen
   {
-    personalId: "frha94336@elmelund.test.dk",
+    personalId: "frha94336",
     role: "student",
     coins: 148,
     xp: 247,
@@ -1977,7 +1977,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Maja Jørgensen
   {
-    personalId: "majo84084@elmelund.test.dk",
+    personalId: "majo84084",
     role: "student",
     coins: 63,
     xp: 228,
@@ -1991,7 +1991,7 @@ export const users: Omit<User, 'id' | 'classroomIds'>[] = [
   },
   // Anton Poulsen
   {
-    personalId: "anpo91989@elmelund.test.dk",
+    personalId: "anpo91989",
     role: "student",
     coins: 43,
     xp: 155,
