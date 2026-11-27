@@ -36,14 +36,32 @@ const router = createRouter({
         },
         {
             path: '/teacher',
-            name: 'teacherLogin',
-            component: () => import('@/views/teacher/HomeView.vue'),
             children: [
                 {
-                    path: '/menuview/:id',
-                    name: 'menuView',
+                    path: '',
+                    name: 'teacher-login',
+                    component: () => import('@/views/teacher/LoginView.vue'),
+                },
+                {
+                    path: '',
+                    name: 'teacher-home',
+                    component: () => import('@/views/teacher/HomeView.vue'),
+                },
+                {
+                    path: 'menu',
+                    name: 'teacher-menu',
                     component: () => import('@/views/teacher/MenuView.vue'),
-                }
+                },
+                {
+                    path: 'class-data',
+                    name: 'teacher-class-data',
+                    component: () => import('@/views/teacher/ClassDataView.vue'),
+                },
+                {
+                    path: 'student-data',
+                    name: 'teacher-student-data',
+                    component: () => import('@/views/teacher/StudentDataView.vue'),
+                },
             ],
         },
     ],
