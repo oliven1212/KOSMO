@@ -11,14 +11,13 @@ const loginModal = useTemplateRef<InstanceType<typeof TeacherLoginModal>>('login
     <div class="w-vw--100 h-vh--100 background">
         <div class="modal-overlay--dark">
             <ContainerModal class="m--auto px--4 py--4 grid grid--gap-4 loginModal">
-                <!-- No clothes yet, the teacher outfit has not been made -->
-                <CharacterDisplay :clothes="[]" :face="['cheeks', 'eyelashes']" class="loginKosmo"/>
+                <CharacterDisplay :clothes="['TeacherHair', 'TeacherOutfit', 'Glasses', 'Bow']" :face="['cheeks', 'eyelashes']" class="loginKosmo"/>
                 <div class="flex flex--column">
                     <h1 class="modal__title">KOSMOs Lærerpanel</h1>
                     <p class="modal__text">Til jer undervisere.</p>
                     <button
                         v-on:click="loginModal?.open()"
-                        class="button button--danger button--rounded button--drop-shadow px--3 py--1 w--min ms--auto loginButton">
+                        class="button button--danger button--rounded button--drop-shadow px--3 py--2 w--min ms--auto loginButton">
                         Log ind
                     </button>
                 </div>
@@ -48,7 +47,6 @@ const loginModal = useTemplateRef<InstanceType<typeof TeacherLoginModal>>('login
 }
 
 .loginButton{
-    font-weight: 700;
     white-space: nowrap;
 }
 </style>
