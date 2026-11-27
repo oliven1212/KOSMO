@@ -1,0 +1,47 @@
+// validate.ts – tjekker at alle referencer i seed-dataen peger på noget, der findes (Firestore gør det ikke selv)
+import { schools } from "./data/schools"; // skoler
+import { classrooms } from "./data/classrooms"; // klasser
+import { personalData } from "./data/personalData"; // lærere og elever
+import { achievements } from "./data/achievements"; // achievements
+import { kosmoCustomization } from "./data/kosmoCustomization"; // kosmo-katalog
+import { users } from "./data/users"; // users
+
+// laver et sæt af ID'er ud fra en liste af dokumenter
+const idsOf = (list: { id: string }[]): Set<string> => new Set(list.map((x) => x.id));
+
+export const findErrors = (): string[] => {
+  const errors: string[] = []; // samler fejl
+  const schoolIds = idsOf(schools); // alle skole-ID'er
+  const classIds = idsOf(classrooms); // alle klasse-ID'er
+  const personIds = idsOf(personalData); // alle e-mails
+  const achievementIds = idsOf(achievements); // alle achievement-ID'er
+  const customizationIds = idsOf(kosmoCustomization); // alle kosmo-ting
+  const categoryById = new Map(kosmoCustomization.map((c) => [c.id, c.category])); // ID -> kategori
+  const freeIds = new Set(kosmoCustomization.filter((c) => c.price === undefined).map((c) => c.id)); // gratis standardting
+
+  for (const [name, list] of Object.entries({ schools, classrooms, personalData, achievements, kosmoCustomization, users })) { // dubletter i samme collection
+    const seen = new Set<string>(); // ID'er set indtil nu
+    for (const { id } of list) { // gå alle dokumenter igennem
+      if (seen.has(id)) errors.push(`${name}: ID ${id} findes to gange`); // samme ID to gange overskriver hinanden
+      seen.add(id); // husk ID'et
+    }
+  }
+  for (const c of classrooms) if (!schoolIds.has(c.schoolId)) errors.push(`classroom ${c.id}: ukendt schoolId ${c.schoolId}`); // klasse -> skole
+  for (const p of personalData) for (const id of p.classroomIds) if (!classIds.has(id)) errors.push(`personalData ${p.id}: ukendt classroomId ${id}`); // person -> klasse
+  for (const u of users) {
+    if (!personIds.has(u.personalId)) errors.push(`user ${u.id}: ${u.personalId} findes ikke i personalData`); // user -> person
+    if (u.id !== u.personalId) errors.push(`user ${u.id}: dokument-ID skal være den fulde e-mail (${u.personalId})`); // ID = e-mail
+    for (const a of u.unlockedAchievementIds ?? []) if (!achievementIds.has(a)) errors.push(`user ${u.id}: ukendt achievement ${a}`); // user -> achievement
+    const studentOnly = [u.coins, u.xp, u.unlockedAchievementIds, u.kosmo]; // felter kun elever bruger
+    if (u.role === "student" && studentOnly.some((v) => v === undefined)) errors.push(`user ${u.id}: elever mangler coins, xp, achievements eller kosmo`); // elever skal have dem alle
+    if (u.role === "teacher" && studentOnly.some((v) => v !== undefined)) errors.push(`user ${u.id}: lærere må ikke have coins, xp, achievements eller kosmo`); // lærere må ingen have
+    if (!u.kosmo) continue; // ingen kosmo, så er der ikke mere at tjekke
+    for (const c of u.kosmo.unlockedClothingIds) if (!customizationIds.has(c)) errors.push(`user ${u.id}: ukendt tøj ${c}`); // user -> oplåst tøj
+    for (const [slot, id] of Object.entries(u.kosmo.equippedClothing)) { // gå alle påtagne ting igennem
+      if (!customizationIds.has(id)) errors.push(`user ${u.id}: ukendt påtaget ting ${id}`); // påtaget skal findes
+      if (!u.kosmo.unlockedClothingIds.includes(id) && !freeIds.has(id)) errors.push(`user ${u.id}: ${id} er påtaget men ikke låst op`); // påtaget skal være købt, eller gratis standard
+      if (categoryById.get(id) !== slot) errors.push(`user ${u.id}: ${id} ligger i slot "${slot}", men hører til "${categoryById.get(id)}"`); // slot skal passe til kategorien
+    }
+  }
+  return errors; // tom liste = alt ok
+};
