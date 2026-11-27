@@ -29,6 +29,8 @@ body{
     align-items: center;
     justify-content: center;
     border: none;
+    font-family: inherit; // buttons do not inherit the page font (Baloo 2) by themselves
+    font-weight: 700;
     &:has(svg){
       padding: 16px;
     }
@@ -48,6 +50,7 @@ body{
 
   &--danger{
     background-color: c.$dangerButton;
+    color: c.$white;
   }
 
   &--round{

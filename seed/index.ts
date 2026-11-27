@@ -1,16 +1,15 @@
-// index.ts – validerer dataen og skriver den til Firestore (kør med: npx tsx seed/index.ts)
+// index.ts – validerer dataen og skriver den til Firestore (kør med: npm run seed)
 // Kræver serviceAccountKey.json i projektets rod (hentes i Firebase Console, og lægges i .gitignore)
-// Der bruges ikke Auth: users får den fulde e-mail som dokument-ID
 import { readFileSync } from "fs"; // bruges til at læse nøglefilen
 import { initializeApp, cert } from "firebase-admin/app"; // start Admin SDK
 import type { ServiceAccount } from "firebase-admin/app"; // start Admin SDK
 import { getFirestore } from "firebase-admin/firestore"; // Firestore
+import { seedUsers } from "./users"; // resets Auth and builds the users
 import { schools } from "./data/schools"; // skoler
 import { classrooms } from "./data/classrooms"; // klasser
 import { personalData } from "./data/personalData"; // lærere og elever
 import { achievements } from "./data/achievements"; // achievements
 import { kosmoCustomization } from "./data/kosmoCustomization"; // kosmo-katalog
-import { users } from "./data/users"; // users
 import { findErrors } from "./validate"; // tjek af referencer
 
 const keyPath = process.env.SERVICE_ACCOUNT_PATH ?? "./serviceAccountKey.json"; // sti til nøglen
@@ -31,6 +30,7 @@ const validate = (): void => {
 
 // skriver en liste til en collection (id bliver dokument-ID, resten bliver felterne)
 const writeCollection = async (name: string, items: { id: string }[]): Promise<void> => {
+  await db.recursiveDelete(db.collection(name)); // removes all old documents first, so nothing is left over or duplicated
   for (let i = 0; i < items.length; i += 400) { // batches må max have 500 skrivninger
     const batch = db.batch(); // ny batch
     for (const { id, ...data } of items.slice(i, i + 400)) batch.set(db.collection(name).doc(id), data); // id ud, resten ind
@@ -41,12 +41,12 @@ const writeCollection = async (name: string, items: { id: string }[]): Promise<v
 
 const main = async (): Promise<void> => {
   validate(); // tjek referencer før noget skrives
+  await writeCollection("kosmoCustomization", kosmoCustomization); // kosmo-katalog
+  await writeCollection("achievements", achievements); // achievements
   await writeCollection("schools", schools); // skoler
   await writeCollection("classrooms", classrooms); // klasser
-  await writeCollection("achievements", achievements); // achievements
-  await writeCollection("kosmoCustomization", kosmoCustomization); // kosmo-katalog
   await writeCollection("personalData", personalData); // lærere og elever
-  await writeCollection("users", users); // users (dokument-ID = e-mail)
+  await writeCollection("users", await seedUsers()); // Auth + users (document ID = Auth uid)
 };
 
 main().then(() => process.exit(0)).catch((e) => { // kør og afslut
