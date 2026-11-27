@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue';
-import { TeacherLoginModal } from '@/components';
+import { LoginModal } from '@/components';
 import ContainerModal from '@/components/modals/ContainerModal.vue';
 import CharacterDisplay from '@/components/CharacterDisplay.vue';
 
-const loginModal = useTemplateRef<InstanceType<typeof TeacherLoginModal>>('loginModal');
+const loginModal = useTemplateRef<InstanceType<typeof LoginModal>>('loginModal');
 </script>
 
 <template>
@@ -16,7 +16,7 @@ const loginModal = useTemplateRef<InstanceType<typeof TeacherLoginModal>>('login
                     <h1 class="modal__title">KOSMOs Lærerpanel</h1>
                     <p class="modal__text">Til jer undervisere.</p>
                     <button
-                        v-on:click="loginModal?.open()"
+                        v-on:click="loginModal?.open({ name: 'teacher-menu' })"
                         class="button button--danger button--rounded button--drop-shadow px--3 py--2 w--min ms--auto loginButton">
                         Log ind
                     </button>
@@ -24,7 +24,7 @@ const loginModal = useTemplateRef<InstanceType<typeof TeacherLoginModal>>('login
             </ContainerModal>
         </div>
 
-        <TeacherLoginModal ref="loginModal" />
+        <LoginModal ref="loginModal" />
     </div>
 </template>
 

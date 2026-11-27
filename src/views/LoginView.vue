@@ -3,11 +3,14 @@ import MapLayout from '@/layouts/MapLayout.vue';
 import ContainerModal from '@/components/modals/ContainerModal.vue';
 import CharacterDisplay from '@/components/CharacterDisplay.vue';
 import UniLogin from '@/components/icons/UniLogin.vue';
+import { useTemplateRef } from 'vue';
+import { LoginModal } from '@/components';
 import { useLoginStore } from '@/stores/login';
 
 const loginStore = useLoginStore();
+const loginModal = useTemplateRef<InstanceType<typeof LoginModal>>('loginModal');
 
-loginStore.signOut();
+void loginStore.signOut();
 
 </script>
 
@@ -20,13 +23,15 @@ loginStore.signOut();
                     <h1>Her skal du bruge din KOSMO til at forstå jorden bedre</h1>
                     <p>Kosmoerne har et citat som de går meget op i: “Klodens omgivelser studeres med observationer!” </p>
                     <button 
-                        v-on:click="loginStore.login()" 
+                        v-on:click="loginModal?.open({ name: 'homepage' })"
                         class="button button--rounded px--3 py--2 w--min ms--auto loginButton">
                         <UniLogin/>
                     </button>
                 </div>
             </ContainerModal>
         </div>
+
+        <LoginModal ref="loginModal" />
     </MapLayout>
 
 </template>
