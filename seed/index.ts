@@ -4,10 +4,10 @@ import { readFileSync } from "fs"; // bruges til at læse nøglefilen
 import { initializeApp, cert } from "firebase-admin/app"; // start Admin SDK
 import type { ServiceAccount } from "firebase-admin/app"; // start Admin SDK
 import { getFirestore } from "firebase-admin/firestore"; // Firestore
-import { seedUsers } from "./users"; // resets Auth and builds the users
+import { seedPersonalData } from "./personalData"; // resets Auth and builds personalData
+import { seedUsers } from "./users"; // builds the users
 import { schools } from "./data/schools"; // skoler
 import { classrooms } from "./data/classrooms"; // klasser
-import { personalData } from "./data/personalData"; // lærere og elever
 import { achievements } from "./data/achievements"; // achievements
 import { kosmoCustomization } from "./data/kosmoCustomization"; // kosmo-katalog
 import { findErrors } from "./validate"; // tjek af referencer
@@ -45,8 +45,8 @@ const main = async (): Promise<void> => {
   await writeCollection("achievements", achievements); // achievements
   await writeCollection("schools", schools); // skoler
   await writeCollection("classrooms", classrooms); // klasser
-  await writeCollection("personalData", personalData); // lærere og elever
-  await writeCollection("users", await seedUsers()); // Auth + users (document ID = Auth uid)
+  await writeCollection("personalData", await seedPersonalData()); // Auth + lærere og elever (document ID = Auth uid)
+  await writeCollection("users", seedUsers()); // users (document ID = username)
 };
 
 main().then(() => process.exit(0)).catch((e) => { // kør og afslut

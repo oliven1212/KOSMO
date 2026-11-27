@@ -8,6 +8,7 @@ export type Category = 'hair' | 'clothing' | 'items'; // faner i garderoben der 
 export interface School {
   id: string; // dokument-ID
   name: string; // skolens navn
+  emailSuffix: string; // the part after the username in this school's e-mails, e.g. "@sondermark.test.dk"
 }
 
 export interface Classroom {
@@ -18,7 +19,8 @@ export interface Classroom {
 }
 
 export interface PersonalData {
-  id: string; // dokument-ID = e-mail (lowercase)
+  id: string; // document ID = Auth uid
+  username: string; // the part of the e-mail before the @, e.g. "peve88912"
   name: string; // navn fra "staten"
   classroomIds: string[]; // klasser personen tilhører
 }
@@ -47,8 +49,9 @@ export interface Kosmo {
 }
 
 export interface User {
-    id: string; // dokument-ID = Auth uid
-    personalId: string; // reference til personalData (= e-mailen)
+    id: string; // document ID = username from the matching personalData
+    personalId: string; // the username of the matching personalData
+    email: string; // username + the school's emailSuffix, made when seeding
     role: Role; // lærer eller elev
     classroomIds: string[]; // copied from personalData when seeding (teachers can have more than one)
     coins?: number; // mønter (kun elever)

@@ -19,9 +19,9 @@ export { default as ThermometerElement } from './games/ThermometerElement.vue';
 // add a new line here each time you create a new editor component (alphabetical)
 
 // modals
+export { default as LoginModal } from './modals/LoginModal.vue';
 export { default as MenuModal } from './modals/MenuModal.vue';
 export { default as TaskConfirmationModal } from './modals/TaskConfirmationModal.vue';
 export { default as TaskDescriptionModal } from './modals/TaskDescriptionModal.vue';
 export { default as TaskResultModal } from './modals/TaskResultModal.vue';
-export { default as TeacherLoginModal } from './modals/TeacherLoginModal.vue';
 // add a new line here each time you create a new editor component (alphabetical)
